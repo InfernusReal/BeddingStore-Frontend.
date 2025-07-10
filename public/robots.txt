@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+Allow: /products
+Allow: /about
+Allow: /contact
+Allow: /product/*
+Allow: /announcements
+
+# Disallow admin routes
+Disallow: /admin*
+Disallow: /checkout
+Disallow: /payment*
+Disallow: /addtocart
+
+# Sitemap location
+Sitemap: https://bns-store.com/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1

@@ -1,0 +1,165 @@
+/* Admin Profits Layout - Custom Top Navigation */
+.admin-profits-layout {
+  min-height: 100vh;
+  background: var(--background-color);
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Top Navigation Header */
+.admin-top-nav {
+  background: var(--admin-sidebar-bg, #2c1810);
+  border-bottom: 1px solid var(--border-color, #4a3428);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 0 2rem;
+}
+
+.admin-nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1rem 0;
+}
+
+.admin-nav-brand h2 {
+  color: var(--luxury-gold, #d4af37);
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.admin-nav-links {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.admin-nav-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--admin-text-color, #e0d0c0);
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  text-transform: capitalize;
+  letter-spacing: 0.3px;
+}
+
+.admin-nav-btn:hover {
+  background: var(--admin-hover-bg, rgba(212, 175, 55, 0.1));
+  border-color: var(--luxury-gold, #d4af37);
+  color: var(--luxury-gold, #d4af37);
+  transform: translateY(-1px);
+}
+
+.admin-nav-btn.active {
+  background: var(--luxury-gold, #d4af37);
+  color: var(--dark-bg, #1a1a1a);
+  border-color: var(--luxury-gold, #d4af37);
+  font-weight: 600;
+}
+
+.admin-nav-btn.active:hover {
+  background: var(--luxury-gold-hover, #c19b26);
+  transform: translateY(-1px);
+}
+
+.admin-logout-btn {
+  padding: 0.6rem 1.2rem;
+  background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+  color: white;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  margin-left: 1rem;
+}
+
+.admin-logout-btn:hover {
+  background: linear-gradient(135deg, #c82333 0%, #a71e2a 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+}
+
+/* Dark Mode Support */
+[data-theme="dark"] .admin-top-nav {
+  background: var(--admin-sidebar-bg, #2c1810);
+  border-bottom-color: var(--border-color, #4a3428);
+}
+
+[data-theme="dark"] .admin-nav-btn {
+  color: var(--admin-text-color, #e0d0c0);
+}
+
+[data-theme="dark"] .admin-nav-btn:hover {
+  background: rgba(212, 175, 55, 0.15);
+  border-color: var(--luxury-gold, #d4af37);
+  color: var(--luxury-gold, #d4af37);
+}
+
+[data-theme="dark"] .admin-logout-btn {
+  background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);
+}
+
+[data-theme="dark"] .admin-logout-btn:hover {
+  background: linear-gradient(135deg, #c53030 0%, #9c2626 100%);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .admin-top-nav {
+    padding: 0 1rem;
+  }
+  
+  .admin-nav-container {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem 0;
+  }
+  
+  .admin-nav-brand h2 {
+    font-size: 1.25rem;
+  }
+  
+  .admin-nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  
+  .admin-nav-btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .admin-main-content {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-nav-links {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    width: 100%;
+  }
+  
+  .admin-nav-btn {
+    text-align: center;
+    padding: 0.7rem 0.5rem;
+    font-size: 0.85rem;
+  }
+}

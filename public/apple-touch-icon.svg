@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" width="180" height="180">
+  <defs>
+    <linearGradient id="appleTouchGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="180" height="180" fill="url(#appleTouchGradient)" rx="20"/>
+  
+  <!-- BnS Text -->
+  <text x="90" y="110" font-family="serif" font-size="48" font-weight="bold" text-anchor="middle" fill="white">
+    B<tspan font-style="italic">n</tspan>S
+  </text>
+  
+  <!-- Luxury accents -->
+  <circle cx="140" cy="40" r="4" fill="rgba(255,255,255,0.8)"/>
+  <circle cx="150" cy="50" r="3" fill="rgba(255,255,255,0.6)"/>
+  <circle cx="145" cy="60" r="2" fill="rgba(255,255,255,0.4)"/>
+</svg>

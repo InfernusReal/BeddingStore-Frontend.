@@ -1,0 +1,1837 @@
+/* About.css - Luxury Bedding Store About Page */
+
+:root {
+  --luxury-gold: #d4af37;
+  --luxury-dark-gold: #b8941f;
+  --luxury-cream: #f8f6f0;
+  --luxury-navy: #1a1a2e;
+  --luxury-charcoal: #2d2d3a;
+  --luxury-white: #ffffff;
+  --text-primary: #2c2c2c;
+  --text-secondary: #666666;
+  --text-light: #999999;
+  --gradient-gold: linear-gradient(135deg, #d4af37 0%, #f2d06b 50%, #d4af37 100%);
+  --gradient-luxury: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.3), rgba(212, 175, 55, 0.1));
+  --gradient-dark: linear-gradient(135deg, #1a1a2e 0%, #2d2d3a 100%);
+  --shadow-luxury: 0 10px 30px rgba(212, 175, 55, 0.1);
+  --shadow-dark: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Dark Mode Support */
+body.dark-mode {
+  --luxury-cream: #1a1a2e;
+  --text-primary: #ffffff;
+  --text-secondary: #cccccc;
+  --text-light: #999999;
+}
+
+/* Base Styles */
+.about-page {
+  overflow-x: hidden;
+  background: var(--luxury-cream);
+  color: var(--text-primary);
+  font-family: 'Playfair Display', 'Georgia', serif;
+  line-height: 1.6;
+}
+
+body.dark-mode .about-page {
+  background: var(--luxury-navy);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.section-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  text-align: center;
+  position: relative;
+}
+
+body.dark-mode .section-title {
+  color: var(--luxury-white);
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: var(--gradient-gold);
+  border-radius: 2px;
+}
+
+/* Hero Section */
+.about-hero {
+  height: 100vh;
+  background: linear-gradient(135deg, rgba(26, 26, 46, 0.7) 0%, rgba(212, 175, 55, 0.3) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--luxury-white);
+  position: relative;
+}
+
+.hero-content {
+  max-width: 600px;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-title {
+  font-size: 4rem;
+  font-weight: 300;
+  margin-bottom: 1rem;
+  letter-spacing: 0.02em;
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  color: var(--luxury-gold);
+  margin-bottom: 1.5rem;
+  font-style: italic;
+}
+
+.hero-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  opacity: 0.9;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.scroll-indicator:hover {
+  opacity: 1;
+  transform: translateX(-50%) scale(1.1);
+}
+
+.scroll-arrow {
+  width: 3px;
+  height: 50px;
+  background: linear-gradient(180deg, var(--luxury-gold) 0%, rgba(212, 175, 55, 0.5) 100%);
+  position: relative;
+  animation: scrollBounce 2s ease-in-out infinite;
+  border-radius: 2px;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+}
+
+.scroll-arrow::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 12px solid var(--luxury-gold);
+  filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.4));
+}
+
+/* Brand Story Section */
+.brand-story {
+  padding: 8rem 0;
+  background: var(--luxury-white);
+  position: relative;
+}
+
+body.dark-mode .brand-story {
+  background: var(--luxury-charcoal);
+}
+
+.story-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+}
+
+.story-text {
+  margin-bottom: 3rem;
+}
+
+.lead-text {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--luxury-gold);
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.story-text p {
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+.story-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.stat {
+  text-align: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, var(--luxury-cream) 0%, var(--luxury-white) 100%);
+  border-radius: 20px;
+  box-shadow: var(--shadow-luxury);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+body.dark-mode .stat {
+  background: linear-gradient(135deg, var(--luxury-navy) 0%, var(--luxury-charcoal) 100%);
+  box-shadow: var(--shadow-dark);
+}
+
+.stat:hover {
+  transform: translateY(-10px);
+  border-color: var(--luxury-gold);
+  box-shadow: 0 30px 80px rgba(212, 175, 55, 0.25);
+}
+
+.stat-number {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--luxury-gold);
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.story-visual {
+  display: grid;
+  gap: 2rem;
+}
+
+.visual-card {
+  background: var(--gradient-gold);
+  padding: 3rem 2rem;
+  border-radius: 20px;
+  color: var(--luxury-white);
+  text-align: center;
+  transform: perspective(1000px) rotateY(-5deg);
+  transition: all 0.4s ease;
+  box-shadow: var(--shadow-luxury);
+}
+
+.visual-card:hover {
+  transform: perspective(1000px) rotateY(0deg) translateY(-10px);
+  box-shadow: 0 30px 80px rgba(212, 175, 55, 0.4);
+}
+
+.visual-card:nth-child(2) {
+  transform: perspective(1000px) rotateY(5deg);
+  margin-left: 2rem;
+}
+
+.visual-card:nth-child(2):hover {
+  transform: perspective(1000px) rotateY(0deg) translateY(-10px);
+}
+
+.visual-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  color: var(--luxury-white);
+}
+
+.visual-card p {
+  font-size: 1rem;
+  opacity: 0.9;
+  color: var(--luxury-white);
+}
+
+/* Values Section */
+.values-section {
+  padding: 8rem 0;
+  background: var(--luxury-cream);
+  position: relative;
+}
+
+body.dark-mode .values-section {
+  background: var(--luxury-navy);
+}
+
+.values-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="diamond" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><polygon points="10,5 15,10 10,15 5,10" fill="%23d4af37" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23diamond)"/></svg>');
+  opacity: 0.3;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 3rem;
+  margin-top: 4rem;
+  position: relative;
+  z-index: 1;
+}
+
+.value-card {
+  background: var(--luxury-white);
+  padding: 3rem 2rem;
+  border-radius: 25px;
+  text-align: center;
+  transition: all 0.4s ease;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .value-card {
+  background: var(--luxury-charcoal);
+  border-color: rgba(212, 175, 55, 0.3);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+.value-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+  transition: left 0.6s ease;
+}
+
+.value-card:hover::before {
+  left: 100%;
+}
+
+.value-card:hover {
+  transform: translateY(-15px) scale(1.02);
+  box-shadow: 0 25px 60px rgba(212, 175, 55, 0.25);
+  border-color: var(--luxury-gold);
+}
+
+body.dark-mode .value-card:hover {
+  box-shadow: 0 25px 60px rgba(212, 175, 55, 0.4);
+}
+
+.value-icon {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  display: block;
+  color: var(--luxury-gold);
+  filter: drop-shadow(0 4px 8px rgba(212, 175, 55, 0.3));
+}
+
+.value-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+body.dark-mode .value-card h3 {
+  color: var(--luxury-white);
+}
+
+.value-card p {
+  color: #666666;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+body.dark-mode .value-card p {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Experience Section */
+.experience-section {
+  padding: 8rem 0;
+  background: linear-gradient(135deg, 
+    var(--luxury-white) 0%, 
+    var(--luxury-cream) 100%);
+}
+
+body.dark-mode .experience-section {
+  background: linear-gradient(135deg, 
+    var(--luxury-charcoal) 0%, 
+    var(--luxury-navy) 100%);
+}
+
+.experience-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+}
+
+.experience-description {
+  font-size: 1.2rem;
+  color: #666666;
+  margin-bottom: 3rem;
+  line-height: 1.8;
+}
+
+body.dark-mode .experience-description {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.experience-features {
+  display: grid;
+  gap: 2rem;
+}
+
+.feature {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  padding: 1.5rem;
+  background: rgba(212, 175, 55, 0.05);
+  border-radius: 15px;
+  border-left: 4px solid var(--luxury-gold);
+  transition: all 0.3s ease;
+}
+
+body.dark-mode .feature {
+  background: rgba(212, 175, 55, 0.1);
+}
+
+.feature:hover {
+  transform: translateX(10px);
+  background: rgba(212, 175, 55, 0.1);
+}
+
+body.dark-mode .feature:hover {
+  background: rgba(212, 175, 55, 0.15);
+}
+
+.feature-icon {
+  font-size: 2rem;
+  color: var(--luxury-gold);
+  flex-shrink: 0;
+}
+
+.feature-content h4 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+body.dark-mode .feature-content h4 {
+  color: var(--luxury-white);
+}
+
+.feature-content p {
+  color: #666666;
+  margin: 0;
+}
+
+body.dark-mode .feature-content p {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.experience-showcase,
+.luxury-showcase {
+  background: linear-gradient(135deg, var(--luxury-white) 0%, var(--luxury-cream) 100%);
+  padding: 3rem 2rem;
+  border-radius: 25px;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid rgba(212, 175, 55, 0.2);
+}
+
+body.dark-mode .experience-showcase,
+body.dark-mode .luxury-showcase {
+  background: var(--gradient-dark);
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+.experience-showcase::before,
+.luxury-showcase::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, transparent, var(--luxury-gold), transparent);
+  animation: rotateGlow 8s linear infinite;
+  opacity: 0.1;
+}
+
+body.dark-mode .experience-showcase::before,
+body.dark-mode .luxury-showcase::before {
+  opacity: 0.3;
+}
+
+.experience-showcase::after,
+.luxury-showcase::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  background: var(--luxury-white);
+  border-radius: 23px;
+  z-index: 1;
+}
+
+body.dark-mode .experience-showcase::after,
+body.dark-mode .luxury-showcase::after {
+  background: var(--luxury-charcoal);
+}
+
+.showcase-item {
+  position: relative;
+  z-index: 2;
+  padding: 2rem;
+  margin-bottom: 1rem;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.showcase-item.active,
+.showcase-item:hover {
+  background: rgba(212, 175, 55, 0.1);
+  transform: translateX(10px);
+}
+
+.showcase-item h3 {
+  color: var(--luxury-gold);
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.showcase-item p {
+  color: var(--text-primary);
+  margin: 0;
+  opacity: 0.9;
+}
+
+body.dark-mode .showcase-item h3 {
+  color: var(--luxury-gold);
+}
+
+body.dark-mode .showcase-item p {
+  color: var(--luxury-white);
+}
+
+/* Vision Section */
+.vision-section {
+  padding: 6rem 0;
+  background: var(--luxury-navy);
+  color: var(--luxury-white);
+  text-align: center;
+}
+
+.vision-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.vision-section .section-title {
+  color: var(--luxury-white);
+}
+
+.vision-text {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  margin: 3rem 0;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.vision-quote {
+  background: rgba(212, 175, 55, 0.1);
+  padding: 2.5rem;
+  border-radius: 15px;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  position: relative;
+  margin-top: 3rem;
+}
+
+.vision-quote::before {
+  content: '"';
+  position: absolute;
+  top: -1rem;
+  left: 2rem;
+  font-size: 4rem;
+  color: var(--luxury-gold);
+  font-family: serif;
+}
+
+.vision-quote blockquote {
+  font-size: 1.3rem;
+  font-style: italic;
+  margin: 0 0 1.5rem 0;
+  line-height: 1.6;
+}
+
+.vision-quote cite {
+  font-size: 1rem;
+  color: var(--luxury-gold);
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* CTA Section */
+.cta-section {
+  padding: 6rem 0;
+  background: var(--gradient-gold);
+  text-align: center;
+  color: var(--luxury-white);
+}
+
+.cta-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.cta-content h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+}
+
+.cta-content p {
+  font-size: 1.1rem;
+  margin-bottom: 2.5rem;
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cta-btn {
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.cta-btn.primary {
+  background: var(--luxury-white);
+  color: var(--luxury-gold);
+  border-color: var(--luxury-white);
+}
+
+.cta-btn.primary:hover {
+  background: transparent;
+  color: var(--luxury-white);
+  border-color: var(--luxury-white);
+  transform: translateY(-2px);
+}
+
+.cta-btn.secondary {
+  background: transparent;
+  color: var(--luxury-white);
+  border-color: var(--luxury-white);
+}
+
+.cta-btn.secondary:hover {
+  background: var(--luxury-white);
+  color: var(--luxury-gold);
+  transform: translateY(-2px);
+}
+
+/* Social Links */
+.social-links {
+  margin-top: 3rem;
+}
+
+.social-text {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.social-icons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.social-btn {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 1px rgba(255, 255, 255, 0.2);
+}
+
+.social-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.8s ease;
+}
+
+.social-btn:hover::before {
+  transform: translateX(100%);
+}
+
+.social-btn svg {
+  width: 32px;
+  height: 32px;
+  transition: all 0.3s ease;
+  z-index: 1;
+  position: relative;
+}
+
+.social-btn:hover {
+  transform: translateY(-8px) scale(1.15);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.2),
+    0 0 30px rgba(255, 255, 255, 0.1),
+    inset 0 1px 1px rgba(255, 255, 255, 0.3);
+}
+
+/* Instagram specific styling */
+.social-btn.instagram {
+  border-color: #e4405f;
+}
+
+.social-btn.instagram:hover {
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  border-color: #e4405f;
+  box-shadow: 0 15px 35px rgba(228, 64, 95, 0.4);
+}
+
+.social-btn.instagram svg {
+  color: #e4405f;
+}
+
+.social-btn.instagram:hover svg {
+  color: white;
+}
+
+/* Facebook specific styling */
+.social-btn.facebook {
+  border-color: #1877f2;
+}
+
+.social-btn.facebook:hover {
+  background: #1877f2;
+  border-color: #1877f2;
+  box-shadow: 0 15px 35px rgba(24, 119, 242, 0.4);
+}
+
+.social-btn.facebook svg {
+  color: #1877f2;
+}
+
+.social-btn.facebook:hover svg {
+  color: white;
+}
+
+/* Twitter/X specific styling */
+.social-btn.twitter {
+  border-color: #ffffff;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.social-btn.twitter:hover {
+  background: #000000;
+  border-color: #000000;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+.social-btn.twitter svg {
+  color: #ffffff;
+}
+
+.social-btn.twitter:hover svg {
+  color: #ffffff;
+}
+
+/* Dark mode adjustments for social buttons */
+body.dark-mode .social-btn.twitter {
+  border-color: #ffffff;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .social-btn.twitter svg {
+  color: #ffffff;
+}
+
+body.dark-mode .social-btn.twitter:hover {
+  background: #000000;
+  border-color: #000000;
+}
+
+body.dark-mode .social-btn.twitter:hover svg {
+  color: #ffffff;
+}
+
+/* Keyframe Animations */
+@keyframes scrollBounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes rotateGlow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Responsive Design - Comprehensive Mobile & Tablet Support */
+
+/* Large Desktop */
+@media (max-width: 1440px) {
+  .container {
+    padding: 0 3rem;
+  }
+  
+  .hero-title {
+    font-size: 4.5rem;
+  }
+  
+  .story-grid,
+  .experience-content {
+    gap: 5rem;
+  }
+  
+  .values-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+  }
+}
+
+/* Standard Desktop */
+@media (max-width: 1200px) {
+  .container {
+    padding: 0 2.5rem;
+  }
+  
+  .hero-title {
+    font-size: 4.2rem;
+  }
+  
+  .story-grid,
+  .experience-content {
+    gap: 4.5rem;
+  }
+  
+  .values-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+  }
+  
+  .visual-card:nth-child(2) {
+    margin-left: 1.5rem;
+  }
+}
+
+/* Large Tablet Landscape */
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 2rem;
+  }
+  
+  .hero-title {
+    font-size: 4rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.4rem;
+  }
+  
+  .story-grid,
+  .experience-content {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+  
+  .values-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+  }
+  
+  .stat {
+    padding: 1.8rem;
+  }
+  
+  .visual-card {
+    padding: 2.5rem 2rem;
+  }
+  
+  .visual-card:nth-child(2) {
+    margin-left: 1rem;
+  }
+  
+  .experience-showcase {
+    padding: 2.5rem 2rem;
+  }
+  
+  .brand-story,
+  .values-section,
+  .experience-section {
+    padding: 7rem 0;
+  }
+}
+
+/* Standard Tablet Portrait */
+@media (max-width: 900px) {
+  .container {
+    padding: 0 1.8rem;
+  }
+  
+  .hero-title {
+    font-size: 3.5rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.3rem;
+  }
+  
+  .section-title {
+    font-size: 2.5rem;
+  }
+  
+  .story-grid,
+  .experience-content {
+    gap: 3.5rem;
+  }
+  
+  .values-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+  
+  .value-card {
+    padding: 2.5rem 1.8rem;
+  }
+  
+  .story-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .stat {
+    padding: 1.5rem;
+  }
+  
+  .visual-card {
+    padding: 2.2rem 1.8rem;
+  }
+  
+  .visual-card:nth-child(2) {
+    margin-left: 0.8rem;
+  }
+  
+  .feature {
+    padding: 1.3rem;
+  }
+  
+  .experience-showcase {
+    padding: 2.2rem 1.8rem;
+  }
+  
+  .showcase-item {
+    padding: 1.8rem;
+  }
+  
+  .vision-quote {
+    padding: 2.2rem;
+  }
+  
+  .social-btn {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .social-btn svg {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* Mobile Landscape / Small Tablet */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+  
+  .about-hero {
+    height: 85vh;
+  }
+  
+  .hero-title {
+    font-size: 3rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.2rem;
+  }
+  
+  .hero-description {
+    font-size: 1rem;
+  }
+  
+  .section-title {
+    font-size: 2.2rem;
+  }
+  
+  .brand-story,
+  .values-section,
+  .experience-section,
+  .vision-section,
+  .cta-section {
+    padding: 5rem 0;
+  }
+  
+  .story-grid,
+  .experience-content {
+    gap: 3rem;
+  }
+  
+  .story-stats {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .values-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .value-card {
+    padding: 2.2rem 1.5rem;
+  }
+  
+  .stat {
+    padding: 1.5rem;
+  }
+  
+  .visual-card {
+    padding: 2rem 1.5rem;
+    transform: perspective(1000px) rotateY(0deg);
+  }
+  
+  .visual-card:nth-child(2) {
+    margin-left: 0;
+    transform: perspective(1000px) rotateY(0deg);
+  }
+  
+  .feature {
+    padding: 1.2rem;
+    gap: 1.2rem;
+  }
+  
+  .experience-showcase {
+    padding: 2rem 1.5rem;
+  }
+  
+  .showcase-item {
+    padding: 1.5rem;
+  }
+  
+  .vision-quote {
+    padding: 2rem 1.5rem;
+  }
+  
+  .vision-quote::before {
+    font-size: 3.2rem;
+    top: -0.8rem;
+  }
+  
+  .cta-content h2 {
+    font-size: 2.2rem;
+  }
+  
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+  }
+  
+  .cta-btn {
+    width: 100%;
+    max-width: 300px;
+    padding: 1.1rem 2rem;
+  }
+  
+  .social-btn {
+    width: 75px;
+    height: 75px;
+  }
+  
+  .social-btn svg {
+    width: 38px;
+    height: 38px;
+  }
+  
+  .scroll-indicator {
+    bottom: 2.5rem;
+  }
+  
+  .scroll-arrow {
+    height: 42px;
+  }
+}
+
+/* Large Mobile Portrait */
+@media (max-width: 640px) {
+  .container {
+    padding: 0 1.2rem;
+  }
+  
+  .about-hero {
+    height: 80vh;
+  }
+  
+  .hero-title {
+    font-size: 2.6rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .hero-description {
+    font-size: 0.95rem;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .brand-story,
+  .values-section,
+  .experience-section,
+  .vision-section,
+  .cta-section {
+    padding: 4.5rem 0;
+  }
+  
+  .value-card {
+    padding: 2rem 1.3rem;
+  }
+  
+  .value-icon {
+    font-size: 2.5rem;
+  }
+  
+  .stat {
+    padding: 1.3rem;
+  }
+  
+  .stat-number {
+    font-size: 2.2rem;
+  }
+  
+  .visual-card {
+    padding: 1.8rem 1.3rem;
+  }
+  
+  .feature {
+    padding: 1.1rem;
+    gap: 1rem;
+  }
+  
+  .feature-icon {
+    font-size: 1.8rem;
+  }
+  
+  .experience-showcase {
+    padding: 1.8rem 1.3rem;
+  }
+  
+  .showcase-item {
+    padding: 1.3rem;
+  }
+  
+  .vision-quote {
+    padding: 1.8rem 1.3rem;
+  }
+  
+  .vision-quote::before {
+    font-size: 3rem;
+  }
+  
+  .cta-content h2 {
+    font-size: 2rem;
+  }
+  
+  .cta-btn {
+    max-width: 280px;
+    padding: 1rem 1.8rem;
+  }
+  
+  .social-icons {
+    gap: 0.8rem;
+  }
+  
+  .social-btn {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .social-btn svg {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+/* Standard Mobile Portrait */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 1rem;
+  }
+  
+  .about-hero {
+    height: 75vh;
+    padding: 0 1rem;
+  }
+  
+  .hero-content {
+    padding: 0 1rem;
+  }
+  
+  .hero-title {
+    font-size: 2.2rem;
+    line-height: 1.2;
+  }
+  
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+  
+  .hero-description {
+    font-size: 0.9rem;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+    margin-bottom: 1.2rem;
+  }
+  
+  .brand-story,
+  .values-section,
+  .experience-section,
+  .vision-section,
+  .cta-section {
+    padding: 4rem 0;
+  }
+  
+  .lead-text {
+    font-size: 1.2rem;
+  }
+  
+  .story-text p {
+    font-size: 1rem;
+  }
+  
+  .value-card {
+    padding: 1.8rem 1.2rem;
+  }
+  
+  .value-icon {
+    font-size: 2.2rem;
+    margin-bottom: 1.2rem;
+  }
+  
+  .value-card h3 {
+    font-size: 1.3rem;
+  }
+  
+  .stat {
+    padding: 1.2rem;
+  }
+  
+  .stat-number {
+    font-size: 2rem;
+  }
+  
+  .visual-card {
+    padding: 1.6rem 1.2rem;
+  }
+  
+  .visual-card h3 {
+    font-size: 1.3rem;
+  }
+  
+  .feature {
+    padding: 1rem;
+    flex-direction: column;
+    text-align: center;
+    gap: 0.8rem;
+  }
+  
+  .feature-icon {
+    font-size: 1.6rem;
+  }
+  
+  .feature-content h4 {
+    font-size: 1.1rem;
+  }
+  
+  .experience-description {
+    font-size: 1.1rem;
+    margin-bottom: 2.5rem;
+  }
+  
+  .experience-showcase {
+    padding: 1.6rem 1.2rem;
+  }
+  
+  .showcase-item {
+    padding: 1.2rem;
+  }
+  
+  .showcase-item h3 {
+    font-size: 1.2rem;
+  }
+  
+  .vision-text {
+    font-size: 1.1rem;
+  }
+  
+  .vision-quote {
+    padding: 1.6rem 1.2rem;
+  }
+  
+  .vision-quote::before {
+    font-size: 2.8rem;
+    top: -0.6rem;
+    left: 1.2rem;
+  }
+  
+  .vision-quote blockquote {
+    font-size: 1.1rem;
+  }
+  
+  .cta-content h2 {
+    font-size: 1.8rem;
+  }
+  
+  .cta-content p {
+    font-size: 1rem;
+  }
+  
+  .cta-btn {
+    max-width: 260px;
+    padding: 0.9rem 1.6rem;
+    font-size: 0.9rem;
+  }
+  
+  .social-text {
+    font-size: 0.9rem;
+  }
+  
+  .social-icons {
+    gap: 0.6rem;
+  }
+  
+  .social-btn {
+    width: 65px;
+    height: 65px;
+  }
+  
+  .social-btn svg {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .scroll-indicator {
+    bottom: 2rem;
+  }
+  
+  .scroll-arrow {
+    height: 38px;
+    width: 2px;
+  }
+  
+  .scroll-arrow::after {
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 10px solid var(--luxury-gold);
+  }
+}
+
+/* Small Mobile Portrait */
+@media (max-width: 400px) {
+  .container {
+    padding: 0 0.8rem;
+  }
+  
+  .about-hero {
+    height: 70vh;
+    padding: 0 0.8rem;
+  }
+  
+  .hero-content {
+    padding: 0 0.8rem;
+  }
+  
+  .hero-title {
+    font-size: 2rem;
+    line-height: 1.1;
+  }
+  
+  .hero-subtitle {
+    font-size: 0.95rem;
+  }
+  
+  .hero-description {
+    font-size: 0.85rem;
+  }
+  
+  .section-title {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+  }
+  
+  .brand-story,
+  .values-section,
+  .experience-section,
+  .vision-section,
+  .cta-section {
+    padding: 3.5rem 0;
+  }
+  
+  .lead-text {
+    font-size: 1.1rem;
+  }
+  
+  .story-text p {
+    font-size: 0.95rem;
+  }
+  
+  .value-card {
+    padding: 1.6rem 1rem;
+  }
+  
+  .value-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .value-card h3 {
+    font-size: 1.2rem;
+  }
+  
+  .value-card p {
+    font-size: 0.9rem;
+  }
+  
+  .stat {
+    padding: 1rem;
+  }
+  
+  .stat-number {
+    font-size: 1.8rem;
+  }
+  
+  .stat-label {
+    font-size: 0.9rem;
+  }
+  
+  .visual-card {
+    padding: 1.4rem 1rem;
+  }
+  
+  .visual-card h3 {
+    font-size: 1.2rem;
+  }
+  
+  .visual-card p {
+    font-size: 0.9rem;
+  }
+  
+  .feature {
+    padding: 0.9rem;
+    gap: 0.6rem;
+  }
+  
+  .feature-icon {
+    font-size: 1.5rem;
+  }
+  
+  .feature-content h4 {
+    font-size: 1rem;
+  }
+  
+  .feature-content p {
+    font-size: 0.9rem;
+  }
+  
+  .experience-description {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .experience-showcase {
+    padding: 1.4rem 1rem;
+  }
+  
+  .showcase-item {
+    padding: 1rem;
+  }
+  
+  .showcase-item h3 {
+    font-size: 1.1rem;
+  }
+  
+  .showcase-item p {
+    font-size: 0.9rem;
+  }
+  
+  .vision-text {
+    font-size: 1rem;
+  }
+  
+  .vision-quote {
+    padding: 1.4rem 1rem;
+  }
+  
+  .vision-quote::before {
+    font-size: 2.5rem;
+    top: -0.5rem;
+    left: 1rem;
+  }
+  
+  .vision-quote blockquote {
+    font-size: 1rem;
+  }
+  
+  .vision-quote cite {
+    font-size: 0.9rem;
+  }
+  
+  .cta-content h2 {
+    font-size: 1.6rem;
+  }
+  
+  .cta-content p {
+    font-size: 0.95rem;
+  }
+  
+  .cta-btn {
+    max-width: 240px;
+    padding: 0.8rem 1.4rem;
+    font-size: 0.85rem;
+  }
+  
+  .social-text {
+    font-size: 0.85rem;
+  }
+  
+  .social-icons {
+    gap: 0.5rem;
+  }
+  
+  .social-btn {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .social-btn svg {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .scroll-indicator {
+    bottom: 1.5rem;
+  }
+  
+  .scroll-arrow {
+    height: 35px;
+    width: 2px;
+  }
+}
+
+/* Extra Small Mobile (300px+) */
+@media (max-width: 350px) {
+  .container {
+    padding: 0 0.6rem;
+  }
+  
+  .about-hero {
+    height: 65vh;
+    padding: 0 0.6rem;
+  }
+  
+  .hero-content {
+    padding: 0 0.6rem;
+  }
+  
+  .hero-title {
+    font-size: 1.8rem;
+    line-height: 1.1;
+  }
+  
+  .hero-subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .hero-description {
+    font-size: 0.8rem;
+  }
+  
+  .section-title {
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .section-title::after {
+    width: 40px;
+    height: 2px;
+  }
+  
+  .brand-story,
+  .values-section,
+  .experience-section,
+  .vision-section,
+  .cta-section {
+    padding: 3rem 0;
+  }
+  
+  .lead-text {
+    font-size: 1rem;
+  }
+  
+  .story-text p {
+    font-size: 0.9rem;
+  }
+  
+  .value-card {
+    padding: 1.4rem 0.8rem;
+  }
+  
+  .value-icon {
+    font-size: 1.8rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .value-card h3 {
+    font-size: 1.1rem;
+  }
+  
+  .value-card p {
+    font-size: 0.85rem;
+  }
+  
+  .stat {
+    padding: 0.8rem;
+  }
+  
+  .stat-number {
+    font-size: 1.6rem;
+  }
+  
+  .stat-label {
+    font-size: 0.8rem;
+  }
+  
+  .visual-card {
+    padding: 1.2rem 0.8rem;
+  }
+  
+  .visual-card h3 {
+    font-size: 1.1rem;
+  }
+  
+  .visual-card p {
+    font-size: 0.85rem;
+  }
+  
+  .feature {
+    padding: 0.8rem;
+    gap: 0.5rem;
+  }
+  
+  .feature-icon {
+    font-size: 1.4rem;
+  }
+  
+  .feature-content h4 {
+    font-size: 0.95rem;
+  }
+  
+  .feature-content p {
+    font-size: 0.85rem;
+  }
+  
+  .experience-description {
+    font-size: 0.95rem;
+    margin-bottom: 1.8rem;
+  }
+  
+  .experience-showcase {
+    padding: 1.2rem 0.8rem;
+  }
+  
+  .showcase-item {
+    padding: 0.8rem;
+  }
+  
+  .showcase-item h3 {
+    font-size: 1rem;
+  }
+  
+  .showcase-item p {
+    font-size: 0.85rem;
+  }
+  
+  .vision-text {
+    font-size: 0.95rem;
+  }
+  
+  .vision-quote {
+    padding: 1.2rem 0.8rem;
+  }
+  
+  .vision-quote::before {
+    font-size: 2.2rem;
+    top: -0.4rem;
+    left: 0.8rem;
+  }
+  
+  .vision-quote blockquote {
+    font-size: 0.95rem;
+  }
+  
+  .vision-quote cite {
+    font-size: 0.85rem;
+  }
+  
+  .cta-content h2 {
+    font-size: 1.4rem;
+  }
+  
+  .cta-content p {
+    font-size: 0.9rem;
+  }
+  
+  .cta-btn {
+    max-width: 220px;
+    padding: 0.7rem 1.2rem;
+    font-size: 0.8rem;
+  }
+  
+  .social-text {
+    font-size: 0.8rem;
+    margin-bottom: 1.2rem;
+  }
+  
+  .social-icons {
+    gap: 0.4rem;
+  }
+  
+  .social-btn {
+    width: 55px;
+    height: 55px;
+    border-width: 2px;
+  }
+  
+  .social-btn svg {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .scroll-indicator {
+    bottom: 1.2rem;
+  }
+  
+  .scroll-arrow {
+    height: 30px;
+    width: 2px;
+  }
+  
+  .scroll-arrow::after {
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 8px solid var(--luxury-gold);
+  }
+}

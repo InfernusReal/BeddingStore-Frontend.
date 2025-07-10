@@ -1,0 +1,238 @@
+.payment-success-wrapper {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 2rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.success-container, .pending-container, .loading-container {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  padding: 3rem 2rem;
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+}
+
+.success-icon, .pending-icon {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-left: 3px solid #667eea;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.success-container h1 {
+  color: #28a745;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.pending-container h1 {
+  color: #ffc107;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.success-message, .pending-message {
+  color: #6c757d;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.order-info {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  border-left: 4px solid #28a745;
+}
+
+.order-info p {
+  margin: 0;
+  color: #2c3e50;
+  font-size: 1.1rem;
+}
+
+.easypaisa-instructions {
+  background: #fff3cd;
+  border: 1px solid #ffeaa7;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  text-align: left;
+}
+
+.easypaisa-instructions h3 {
+  color: #856404;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.payment-details {
+  background: white;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid #dee2e6;
+}
+
+.payment-details p {
+  margin: 0.5rem 0;
+  color: #2c3e50;
+  font-weight: 500;
+}
+
+.instructions-list h4 {
+  color: #856404;
+  margin-bottom: 0.5rem;
+}
+
+.instructions-list ol {
+  color: #6c757d;
+  line-height: 1.6;
+  padding-left: 1.5rem;
+}
+
+.instructions-list li {
+  margin-bottom: 0.5rem;
+}
+
+.status-check {
+  background: #e3f2fd;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 2rem 0;
+  border-left: 4px solid #2196f3;
+}
+
+.status-check p:first-child {
+  color: #1976d2;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.status-note {
+  color: #6c757d;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.success-actions, .pending-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.continue-btn, .orders-btn, .home-btn {
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 150px;
+}
+
+.continue-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.continue-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.orders-btn {
+  background: #28a745;
+  color: white;
+}
+
+.orders-btn:hover {
+  background: #218838;
+  transform: translateY(-2px);
+}
+
+.home-btn {
+  background: #6c757d;
+  color: white;
+}
+
+.home-btn:hover {
+  background: #5a6268;
+  transform: translateY(-2px);
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  color: #6c757d;
+}
+
+.loading-container .loading-spinner {
+  position: static;
+  transform: none;
+  border-color: rgba(108, 117, 125, 0.3);
+  border-left-color: #6c757d;
+}
+
+@media (max-width: 768px) {
+  .payment-success-wrapper {
+    padding: 1rem;
+  }
+  
+  .success-container, .pending-container, .loading-container {
+    padding: 2rem 1.5rem;
+  }
+  
+  .success-container h1, .pending-container h1 {
+    font-size: 2rem;
+  }
+  
+  .success-actions, .pending-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .continue-btn, .orders-btn, .home-btn {
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .easypaisa-instructions {
+    padding: 1rem;
+  }
+  
+  .instructions-list ol {
+    padding-left: 1rem;
+  }
+}

@@ -1,0 +1,314 @@
+/* --- UserDetails.css: Premium, Modern, Responsive, Dark/Light Mode Aesthetic --- */
+.user-details-wrapper {
+  max-width: 520px;
+  margin: 3.5rem auto 2.5rem auto;
+  padding: 2.5rem 2rem 2rem 2rem;
+  background: var(--ud-bg, #f7f7f7);
+  border-radius: 18px;
+  border: 2px solid #23272f;
+  box-shadow: 0 4px 32px 0 rgba(34,34,34,0.10);
+  transition: background 0.3s, box-shadow 0.3s;
+}
+
+.user-details-wrapper h2 {
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.6rem;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.5px;
+  color: #23272f;
+  transition: color 0.3s;
+}
+body.dark-mode .user-details-wrapper h2 {
+  color: #ffe7b3 !important;
+}
+
+.checkout-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.checkout-form label {
+  font-size: 1.08rem;
+  font-weight: 600;
+  color: var(--ud-label, #23272f);
+  margin-bottom: 0.3rem;
+  letter-spacing: 0.2px;
+}
+
+.checkout-form input,
+.checkout-form textarea {
+  padding: 1rem 1.1rem;
+  font-size: 1.08rem;
+  border: 1.5px solid var(--ud-input-border, #e0e0e0);
+  border-radius: 10px;
+  background: var(--ud-input-bg, #fff);
+  color: var(--ud-input, #23272f);
+  outline: none;
+  transition: border 0.2s, background 0.2s;
+  box-shadow: 0 2px 8px #0001;
+}
+.checkout-form input:focus,
+.checkout-form textarea:focus {
+  border-color: #bfa06a;
+  background: #fffbe6;
+}
+
+.checkout-form textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+.checkout-form button {
+  padding: 1rem 0;
+  background: linear-gradient(90deg, #bfa06a 0%, #d6b88f 100%);
+  color: #23272f;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.13rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  box-shadow: 0 2px 12px #bfa06a22;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+.checkout-form button:hover {
+  background: #ffe7b3;
+  color: #bfa06a;
+}
+
+/* DARK MODE */
+body.dark-mode .user-details-wrapper {
+  --ud-bg: #181a20;
+  box-shadow: 0 4px 32px 0 rgba(191,160,106,0.10);
+}
+body.dark-mode .checkout-form label {
+  --ud-label: #ffe7b3;
+}
+body.dark-mode .checkout-form input,
+body.dark-mode .checkout-form textarea {
+  --ud-input-bg: #23272f;
+  --ud-input: #ffe7b3;
+  --ud-input-border: #bfa06a;
+}
+body.dark-mode .checkout-form input:focus,
+body.dark-mode .checkout-form textarea:focus {
+  background: #23272f;
+  border-color: #ffe7b3;
+}
+body.dark-mode .checkout-form button {
+  background: #ffe7b3;
+  color: #23272f;
+}
+body.dark-mode .checkout-form button:hover {
+  background: #bfa06a;
+  color: #fff;
+}
+
+/* Mobile and Tablet Responsive Design */
+
+/* Extra Small Mobile (300px - 380px) */
+@media (min-width: 300px) and (max-width: 380px) {
+  .user-details-wrapper {
+    max-width: 280px;
+    margin: 2rem 50px 1.5rem 50px;
+    padding: 1.5rem 1rem;
+    border-radius: 12px;
+  }
+  
+  .user-details-wrapper h2 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .checkout-form {
+    gap: 0.8rem;
+  }
+  
+  .checkout-form label {
+    font-size: 0.95rem;
+    margin-bottom: 0.2rem;
+  }
+  
+  .checkout-form input,
+  .checkout-form textarea {
+    padding: 0.7rem 0.8rem;
+    font-size: 0.9rem;
+    border-radius: 8px;
+  }
+  
+  .checkout-form textarea {
+    min-height: 70px;
+  }
+  
+  .checkout-form button {
+    padding: 0.8rem 0;
+    font-size: 0.95rem;
+    border-radius: 8px;
+  }
+}
+
+/* Small Mobile (381px - 480px) */
+@media (min-width: 381px) and (max-width: 480px) {
+  .user-details-wrapper {
+    max-width: 340px;
+    margin: 2.5rem 60px 2rem 60px;
+    padding: 1.8rem 1.3rem;
+    border-radius: 14px;
+  }
+  
+  .user-details-wrapper h2 {
+    font-size: 1.4rem;
+    margin-bottom: 1.2rem;
+  }
+  
+  .checkout-form {
+    gap: 0.9rem;
+  }
+  
+  .checkout-form label {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .checkout-form input,
+  .checkout-form textarea {
+    padding: 0.8rem 0.9rem;
+    font-size: 0.95rem;
+    border-radius: 9px;
+  }
+  
+  .checkout-form textarea {
+    min-height: 75px;
+  }
+  
+  .checkout-form button {
+    padding: 0.85rem 0;
+    font-size: 1rem;
+    border-radius: 9px;
+  }
+}
+
+/* Medium Mobile (481px - 600px) */
+@media (min-width: 481px) and (max-width: 600px) {
+  .user-details-wrapper {
+    max-width: 420px;
+    margin: 3rem 70px 2.2rem 70px;
+    padding: 2rem 1.5rem;
+    border-radius: 15px;
+  }
+  
+  .user-details-wrapper h2 {
+    font-size: 1.45rem;
+    margin-bottom: 1.3rem;
+  }
+  
+  .checkout-form {
+    gap: 1rem;
+  }
+  
+  .checkout-form label {
+    font-size: 1.02rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .checkout-form input,
+  .checkout-form textarea {
+    padding: 0.85rem 1rem;
+    font-size: 1rem;
+    border-radius: 9px;
+  }
+  
+  .checkout-form textarea {
+    min-height: 80px;
+  }
+  
+  .checkout-form button {
+    padding: 0.9rem 0;
+    font-size: 1.05rem;
+    border-radius: 9px;
+  }
+}
+
+/* Large Mobile / Small Tablet (601px - 768px) */
+@media (min-width: 601px) and (max-width: 768px) {
+  .user-details-wrapper {
+    max-width: 480px;
+    margin: 3.2rem 80px 2.3rem 80px;
+    padding: 2.2rem 1.7rem;
+    border-radius: 16px;
+  }
+  
+  .user-details-wrapper h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.4rem;
+  }
+  
+  .checkout-form {
+    gap: 1.1rem;
+  }
+  
+  .checkout-form label {
+    font-size: 1.05rem;
+    margin-bottom: 0.28rem;
+  }
+  
+  .checkout-form input,
+  .checkout-form textarea {
+    padding: 0.9rem 1.05rem;
+    font-size: 1.02rem;
+    border-radius: 10px;
+  }
+  
+  .checkout-form textarea {
+    min-height: 85px;
+  }
+  
+  .checkout-form button {
+    padding: 0.95rem 0;
+    font-size: 1.08rem;
+    border-radius: 10px;
+  }
+}
+
+/* Tablet (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .user-details-wrapper {
+    max-width: 500px;
+    margin: 3.3rem 50px 2.4rem 50px;
+    padding: 2.3rem 1.8rem;
+    border-radius: 17px;
+  }
+  
+  .user-details-wrapper h2 {
+    font-size: 1.55rem;
+    margin-bottom: 1.45rem;
+  }
+  
+  .checkout-form {
+    gap: 1.15rem;
+  }
+  
+  .checkout-form label {
+    font-size: 1.06rem;
+    margin-bottom: 0.28rem;
+  }
+  
+  .checkout-form input,
+  .checkout-form textarea {
+    padding: 0.95rem 1.08rem;
+    font-size: 1.05rem;
+    border-radius: 10px;
+  }
+  
+  .checkout-form textarea {
+    min-height: 88px;
+  }
+  
+  .checkout-form button {
+    padding: 0.98rem 0;
+    font-size: 1.1rem;
+    border-radius: 10px;
+  }
+}
