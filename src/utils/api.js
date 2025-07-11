@@ -8,9 +8,7 @@ export const getApiUrl = (endpoint) => {
   const cleanEndpoint = endpoint.startsWith('/') ? endpoint : `/${endpoint}`;
   
   if (IS_PRODUCTION) {
-    const url = `${PRODUCTION_API_URL}${cleanEndpoint}`;
-    console.log('🌐 Production API call:', url); // Debug log
-    return url;
+    return `${PRODUCTION_API_URL}${cleanEndpoint}`;
   } else {
     // In development, use relative paths (will be proxied by Vite)
     return cleanEndpoint;
@@ -19,7 +17,9 @@ export const getApiUrl = (endpoint) => {
 
 // Get image URL (for images served by backend)
 export const getImageUrl = (imagePath) => {
-  if (!imagePath) return '/placeholder.png';
+  if (!imagePath) {
+    return null; // Return null instead of placeholder to avoid loops
+  }
   
   // If it's already a full URL (like Cloudinary), return as-is
   if (imagePath.startsWith('http')) {

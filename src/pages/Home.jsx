@@ -144,9 +144,8 @@ export default function Home() {
                         <div className="product-card-content">
                           <img
                             className="product-img"
-                            src={getImageUrl(col.products[currentCardIndex[col.id] || 0].image_url)}
+                            src={getImageUrl(col.products[currentCardIndex[col.id] || 0].image_url) || 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQwIiBoZWlnaHQ9IjI0MCIgdmlld0JveD0iMCAwIDI0MCAyNDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjI0MCIgaGVpZ2h0PSIyNDAiIGZpbGw9IiNmMGYwZjAiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzk5OTk5OSI+Tm8gSW1hZ2U8L3RleHQ+PC9zdmc+'}
                             alt={col.products[currentCardIndex[col.id] || 0].name}
-                            onError={e => { e.target.src = '/placeholder.png'; }}
                           />
                           <h3 className="product-title">{col.products[currentCardIndex[col.id] || 0].name}</h3>
                           <p className="desc">{col.products[currentCardIndex[col.id] || 0].description}</p>
@@ -202,9 +201,8 @@ export default function Home() {
                         <div className="product-card-content">
                           <img
                             className="product-img"
-                            src={getImageUrl(prod.image_url)}
+                            src={getImageUrl(prod.image_url) || 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQwIiBoZWlnaHQ9IjI0MCIgdmlld0JveD0iMCAwIDI0MCAyNDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjI0MCIgaGVpZ2h0PSIyNDAiIGZpbGw9IiNmMGYwZjAiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzk5OTk5OSI+Tm8gSW1hZ2U8L3RleHQ+PC9zdmc+'}
                             alt={prod.name}
-                            onError={e => { e.target.src = '/placeholder.png'; }}
                           />
                           <h3 className="product-title">{prod.name}</h3>
                           <p className="desc">{prod.description}</p>
@@ -259,9 +257,8 @@ export default function Home() {
                       <div className="product-card-content">
                         <img
                           className="product-img"
-                          src={getImageUrl(prod.image_url)}
+                          src={getImageUrl(prod.image_url) || 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQwIiBoZWlnaHQ9IjI0MCIgdmlld0JveD0iMCAwIDI0MCAyNDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjI0MCIgaGVpZ2h0PSIyNDAiIGZpbGw9IiNmMGYwZjAiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzk5OTk5OSI+Tm8gSW1hZ2U8L3RleHQ+PC9zdmc+'}
                           alt={prod.name}
-                          onError={e => { e.target.src = '/placeholder.png'; }}
                         />
                         <h3 className="product-title">{prod.name}</h3>
                         <p className="desc">{prod.description}</p>
