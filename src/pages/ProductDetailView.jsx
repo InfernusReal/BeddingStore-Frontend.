@@ -1,4 +1,5 @@
 import React from 'react';
+import { getImageUrl } from '../utils/api';
 import './ProductDetailView.css';
 
 export default function ProductDetailView({
@@ -22,7 +23,7 @@ export default function ProductDetailView({
     }
     
     // Local image - add base URL
-    return `http://localhost:5000${imageUrl}`;
+    return getImageUrl(imageUrl);
   };
 
   // User side: image left, info center, no inputs, no admin buttons

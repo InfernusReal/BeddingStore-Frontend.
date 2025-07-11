@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { getApiUrl } from '../utils/api';
 import './PaymentSuccess.css';
 
 function PaymentSuccess() {
@@ -36,7 +37,7 @@ function PaymentSuccess() {
     
     const pollInterval = setInterval(async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/orders/${orderId}/status`);
+        const response = await fetch(getApiUrl(`/api/orders/${orderId}/status`));
         const data = await response.json();
         
         if (data.status === 'confirmed') {

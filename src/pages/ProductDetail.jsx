@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { getApiUrl } from '../utils/api';
 import ProductDetailView from './ProductDetailView';
 import './ProductDetail.css';
 
@@ -9,24 +10,7 @@ export default function ProductDetail() {
   function fixImage(product) {
     if (!product?.image_url) return { ...product, image_url: '/placeholder.png' };
     
-    let url = product.image_url;
-    
-    // If it's already a full URL (Cloudinary), leave it as-is
-    if (url.startsWith('http')) {
-      return { ...product, image_url: url };
-    }
-    
-    // Fix double prefix for local images
-    if (url.startsWith('/uploads/uploads/')) {
-      url = url.replace('/uploads/uploads/', '/uploads/');
-    }
-    
-    // Add uploads prefix if missing for local images
-    if (!url.startsWith('/uploads/')) {
-      url = `/uploads/${url.replace(/^uploads[\\/]+/, '').replace(/^\\+|^\/+/, '')}`;
-    }
-    
-    return { ...product, image_url: url };
+    return { ...product, image_url: getImageUrl(product.image_url) };
   }
 
   const { slug } = useParams();
@@ -74,7 +58,7 @@ export default function ProductDetail() {
   // New function to fetch reviews
   const fetchReviews = async () => {
     try {
-      const res = await axios.get(`/api/reviews/product/${slug}`);
+      const res = await axios.get(getApiUrl(`/api/reviews/product/${slug}`));
       setReviews(res.data);
     } catch (err) {
       console.error('Error fetching reviews:', err);
@@ -91,7 +75,7 @@ export default function ProductDetail() {
 
     setIsSubmittingReview(true);
     try {
-      await axios.post('/api/reviews', {
+      await axios.post(getApiUrl('/api/reviews'), {
         product_slug: slug,
         reviewer_name: newReview.reviewer_name.trim(),
         rating: newReview.rating,
@@ -137,7 +121,7 @@ export default function ProductDetail() {
   useEffect(() => {
     async function fetchProduct() {
       try {
-        const res = await axios.get(`/api/products/slug/${slug}`);
+        const res = await axios.get(getApiUrl(`/api/products/slug/${slug}`));
         setProduct(res.data);
       } catch (err) {
         setProduct(null);

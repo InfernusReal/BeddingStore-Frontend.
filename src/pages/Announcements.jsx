@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { getApiUrl, getImageUrl } from '../utils/api';
 import './Announcements.css';
 
 export default function Announcements() {
@@ -22,7 +23,7 @@ export default function Announcements() {
   const fetchAnnouncements = async () => {
     try {
       setLoading(true);
-      const response = await fetch('/api/announcements');
+      const response = await fetch(getApiUrl('/api/announcements'));
       
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -38,7 +39,7 @@ export default function Announcements() {
         const likedSet = new Set();
         for (const announcement of data) {
           try {
-            const likeResponse = await fetch(`/api/announcements/${announcement.id}/like-status`);
+            const likeResponse = await fetch(getApiUrl(`/api/announcements/${announcement.id}/like-status`));
             if (likeResponse.ok) {
               const likeData = await likeResponse.json();
               if (likeData.liked) {
@@ -64,7 +65,7 @@ export default function Announcements() {
 
   const handleLike = async (announcementId) => {
     try {
-      const response = await fetch(`/api/announcements/${announcementId}/like`, {
+      const response = await fetch(getApiUrl(`/api/announcements/${announcementId}/like`), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -98,7 +99,7 @@ export default function Announcements() {
   const openCommentsModal = async (announcement) => {
     setSelectedAnnouncement(announcement);
     try {
-      const response = await fetch(`/api/announcements/${announcement.id}/comments`);
+      const response = await fetch(getApiUrl(`/api/announcements/${announcement.id}/comments`));
       const commentsData = await response.json();
       setComments(commentsData);
     } catch (error) {
@@ -127,7 +128,7 @@ export default function Announcements() {
     }
 
     try {
-      const response = await fetch(`/api/announcements/${selectedAnnouncement.id}/comments`, {
+      const response = await fetch(getApiUrl(`/api/announcements/${selectedAnnouncement.id}/comments`), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -272,7 +273,7 @@ export default function Announcements() {
 
                 <div className="post-image">
                   <img 
-                    src={`http://localhost:5000/images/announcements/${announcement.image_path}`} 
+                    src={getImageUrl(`/images/announcements/${announcement.image_path}`)} 
                     alt="Announcement" 
                     loading="lazy"
                     onError={(e) => {
@@ -343,7 +344,7 @@ export default function Announcements() {
 
               <div className="modal-content">
                 <div className="announcement-preview">
-                  <img src={`http://localhost:5000/images/announcements/${selectedAnnouncement.image_path}`} alt="Announcement" />
+                  <img src={getImageUrl(`/images/announcements/${selectedAnnouncement.image_path}`)} alt="Announcement" />
                   <p>{selectedAnnouncement.description}</p>
                 </div>
 

@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { getApiUrl } from '../utils/api';
 
 const AdminAuthContext = createContext();
 
@@ -46,7 +47,7 @@ export const AdminAuthProvider = ({ children }) => {
       const userIP = ipData.ip;
 
       // Send login request
-      const response = await fetch('/api/admin/login', {
+      const response = await fetch(getApiUrl('/api/admin/login'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

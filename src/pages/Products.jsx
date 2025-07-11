@@ -29,9 +29,9 @@ export default function Products() {
     async function fetchData() {
       try {
         const [popularRes, collectionsRes, productsRes] = await Promise.all([
-          axios.get('/api/products/popular'),
-          axios.get('/api/collections'),
-          axios.get('/api/products'),
+          axios.get(getApiUrl('/api/products/popular')),
+          axios.get(getApiUrl('/api/collections')),
+          axios.get(getApiUrl('/api/products')),
         ]);
 
         const popularArr = Array.isArray(popularRes.data) ? popularRes.data : [];
@@ -44,26 +44,9 @@ export default function Products() {
         const fixImage = (product) => {
           if (!product.image_url) return { ...product, image_url: '/placeholder.png' };
 
-          let url = product.image_url;
-
-          // If it's already a full URL (Cloudinary), leave it as-is
-          if (url.startsWith('http')) {
-            return { ...product, image_url: url };
-          }
-
-          // Fix double prefix for local images
-          if (url.startsWith('/uploads/uploads/')) {
-            url = url.replace('/uploads/uploads/', '/uploads/');
-          }
-
-          // Add uploads prefix if missing for local images
-          if (!url.startsWith('/uploads/')) {
-            url = `/uploads/${url.replace(/^uploads[\\/]+/, '').replace(/^\\+|^\/+/, '')}`;
-          }
-
           return {
             ...product,
-            image_url: url
+            image_url: getImageUrl(product.image_url)
           };
         };
 

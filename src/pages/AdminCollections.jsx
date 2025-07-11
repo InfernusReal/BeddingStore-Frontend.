@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { getApiUrl } from '../utils/api';
 
 function CollectionManager() {
   const [name, setName] = useState('');
@@ -14,7 +15,7 @@ function CollectionManager() {
   }, []);
 
   function fetchCollections() {
-    axios.get('/api/collections')
+    axios.get(getApiUrl('/api/collections'))
       .then(res => setCollections(Array.isArray(res.data) ? res.data : []))
       .catch(err => console.error('Failed to fetch collections:', err));
   }
@@ -24,7 +25,7 @@ function CollectionManager() {
     if (!name.trim()) return alert("Collection name required");
 
     try {
-      await axios.post('/api/collections', {
+      await axios.post(getApiUrl('/api/collections'), {
         name,
         description,
         show_on_homepage: showOnHomepage
@@ -43,7 +44,7 @@ function CollectionManager() {
   async function handleDelete(id) {
     if (!window.confirm('Delete this collection?')) return;
     try {
-      await axios.delete(`/api/collections/${id}`);
+      await axios.delete(getApiUrl(`/api/collections/${id}`));
       fetchCollections();
     } catch (err) {
       console.error(err);

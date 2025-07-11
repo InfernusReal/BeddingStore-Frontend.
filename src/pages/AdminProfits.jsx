@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { getApiUrl } from '../utils/api';
 import './AdminProfits.css';
 
 export default function AdminProfits() {
@@ -16,7 +17,7 @@ export default function AdminProfits() {
 
   const fetchFinanceData = async () => {
     try {
-      const response = await axios.get('/api/profits');
+      const response = await axios.get(getApiUrl('/api/profits'));
       setFinanceData(response.data);
       setLoading(false);
     } catch (error) {
@@ -32,7 +33,7 @@ export default function AdminProfits() {
 
     setDeleting(orderId);
     try {
-      const response = await axios.delete(`/api/profits/order/${orderId}`);
+      const response = await axios.delete(getApiUrl(`/api/profits/order/${orderId}`));
       
       // Update the state with new data
       setFinanceData(prev => ({

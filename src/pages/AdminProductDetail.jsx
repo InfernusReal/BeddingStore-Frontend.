@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { getApiUrl, getImageUrl } from '../utils/api';
 import ProductDetailView from './ProductDetailView';
 
 export default function AdminProductDetail() {
@@ -19,7 +20,7 @@ export default function AdminProductDetail() {
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
-    axios.get(`/api/products/slug/${slug}`)
+    axios.get(getApiUrl(`/api/products/slug/${slug}`))
       .then(res => {
         setProduct(res.data);
         setFormData({
@@ -30,7 +31,7 @@ export default function AdminProductDetail() {
           collection_id: res.data.collection_id || '',
           image: null
         });
-        setPreview(res.data.image_url ? `http://localhost:5000${res.data.image_url}` : null);
+        setPreview(res.data.image_url ? getImageUrl(res.data.image_url) : null);
       })
       .catch(() => alert('Product not found.'));
   }, [slug]);
@@ -46,7 +47,7 @@ export default function AdminProductDetail() {
   function handleFileChange(e) {
     const file = e.target.files[0];
     setFormData(prev => ({ ...prev, image: file || null }));
-    setPreview(file ? URL.createObjectURL(file) : (product?.image_url ? `http://localhost:5000${product.image_url}` : null));
+    setPreview(file ? URL.createObjectURL(file) : (product?.image_url ? getImageUrl(product.image_url) : null));
   }
 
   async function handleSubmit(e) {
@@ -63,7 +64,7 @@ export default function AdminProductDetail() {
       }
     }
     try {
-      await axios.put(`/api/products/slug/${slug}`, data, {
+      await axios.put(getApiUrl(`/api/products/slug/${slug}`), data, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
       alert('Product updated!');

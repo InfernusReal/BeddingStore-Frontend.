@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAdminAuth } from '../contexts/AdminAuthContext';
+import { getApiUrl } from '../utils/api';
 import './AdminSettings.css';
 
 export default function AdminSettings() {
@@ -17,7 +18,7 @@ export default function AdminSettings() {
 
   const fetchAccessLogs = async () => {
     try {
-      const response = await fetch('/api/admin/access-logs');
+      const response = await fetch(getApiUrl('/api/admin/access-logs'));
       if (response.ok) {
         const logs = await response.json();
         setAccessLogs(logs);
@@ -44,7 +45,7 @@ export default function AdminSettings() {
     setMessage({ type: '', text: '' });
 
     try {
-      const response = await fetch('/api/admin/change-password', {
+      const response = await fetch(getApiUrl('/api/admin/change-password'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

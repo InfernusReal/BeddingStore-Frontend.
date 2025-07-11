@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { getApiUrl, getImageUrl } from '../utils/api';
 import './AdminAnnouncements.css';
 
 function AdminAnnouncements() {
@@ -18,7 +19,7 @@ function AdminAnnouncements() {
 
   const fetchAnnouncements = async () => {
     try {
-      const response = await fetch('/api/announcements');
+      const response = await fetch(getApiUrl('/api/announcements'));
       const data = await response.json();
       setAnnouncements(data);
     } catch (error) {
@@ -68,7 +69,7 @@ function AdminAnnouncements() {
     submitFormData.append('description', formData.description);
 
     try {
-      const response = await fetch('/api/announcements', {
+      const response = await fetch(getApiUrl('/api/announcements'), {
         method: 'POST',
         body: submitFormData
       });
@@ -98,7 +99,7 @@ function AdminAnnouncements() {
     }
 
     try {
-      const response = await fetch(`/api/announcements/${id}`, {
+      const response = await fetch(getApiUrl(`/api/announcements/${id}`), {
         method: 'DELETE'
       });
 
@@ -220,7 +221,7 @@ function AdminAnnouncements() {
                 <div key={announcement.id} className="announcement-card">
                   <div className="announcement-image">
                     <img 
-                      src={`http://localhost:5000/images/announcements/${announcement.image_path}`} 
+                      src={getImageUrl(`/images/announcements/${announcement.image_path}`)} 
                       alt="Announcement" 
                       onError={(e) => {
                         console.error('Admin image failed to load:', announcement.image_path);

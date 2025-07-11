@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { getApiUrl } from '../utils/api';
 import './AdminDashboard.css';
 
 function AdminDashboard() {
@@ -28,7 +29,7 @@ function AdminDashboard() {
   function deleteProduct(id) {
     if (!window.confirm('Delete this product?')) return;
 
-    axios.delete(`/api/products/${id}`)
+    axios.delete(getApiUrl(`/api/products/${id}`))
       .then(() => {
         setProductList(prev => prev.filter(p => p.id !== id));
       })
@@ -39,7 +40,7 @@ function AdminDashboard() {
   }
 
   useEffect(() => {
-    axios.get('/api/collections').then(res => {
+    axios.get(getApiUrl('/api/collections')).then(res => {
       setCollections(Array.isArray(res.data) ? res.data : []);
     });
   }, []);
@@ -105,7 +106,7 @@ function AdminDashboard() {
     }
 
     try {
-      const res = await axios.post('/api/products', data, {
+      const res = await axios.post(getApiUrl('/api/products'), data, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
       alert('Product uploaded successfully!');
@@ -127,13 +128,13 @@ function AdminDashboard() {
   }
 
   const fetchCollections = useCallback(() => {
-    axios.get('/api/collections')
+    axios.get(getApiUrl('/api/collections'))
       .then(res => setCollections(res.data))
       .catch(err => console.error('Collections fetch failed:', err));
   }, []);
 
   const fetchProducts = useCallback(() => {
-    axios.get('/api/products')
+    axios.get(getApiUrl('/api/products'))
       .then(res => setProductList(res.data))
       .catch(err => console.error('Product fetch failed:', err));
   }, []);
@@ -141,7 +142,7 @@ function AdminDashboard() {
   // Fetch pending orders
   const fetchPendingOrders = useCallback(async () => {
     try {
-      const response = await axios.get('/api/orders');
+      const response = await axios.get(getApiUrl('/api/orders'));
       const orders = Array.isArray(response.data) ? response.data : [];
       
       // Group orders by ID and filter pending EasyPaisa orders
@@ -193,7 +194,7 @@ function AdminDashboard() {
 
     try {
       // Confirm payment in database (this also triggers the confirmation email on the backend)
-      await axios.put(`/api/orders/${orderId}/confirm`);
+      await axios.put(getApiUrl(`/api/orders/${orderId}/confirm`));
 
       alert('Payment confirmed! Email has been sent to admin only. Please contact the customer directly to arrange delivery.');
 
@@ -480,7 +481,7 @@ function AdminDashboard() {
 
 function AdminProductCard({ prod, collection, hovered, setHovered, deleteProduct, onDoubleClick }) {
   const fallback = '/placeholder.png';
-  const BASE_URL = 'http://localhost:5000';
+  const BASE_URL = import.meta.env.MODE === 'production' ? 'https://bnsbackend-d76688301766.herokuapp.com' : 'http://localhost:5000';
   
   // Handle both Cloudinary and local images
   const getImageUrl = (imageUrl) => {

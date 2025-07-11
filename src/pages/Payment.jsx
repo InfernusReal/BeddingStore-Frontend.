@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { getApiUrl } from '../utils/api';
 import './Payment.css';
 
 function Payment() {
@@ -90,7 +91,7 @@ function Payment() {
       purpose: 'order'
     };
 
-    const response = await fetch('http://localhost:5000/api/send-email', {
+    const response = await fetch(getApiUrl('/api/send-email'), {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -123,7 +124,7 @@ function Payment() {
       }))
     };
 
-    const response = await fetch('http://localhost:5000/api/orders', {
+    const response = await fetch(getApiUrl('/api/orders'), {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
