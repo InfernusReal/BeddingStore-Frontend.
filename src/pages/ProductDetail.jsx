@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { getApiUrl } from '../utils/api';
+import { getApiUrl, getImageUrl } from '../utils/api';
 import ProductDetailView from './ProductDetailView';
 import './ProductDetail.css';
 

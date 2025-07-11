@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { getApiUrl } from '../utils/api';
+import { getApiUrl, getImageUrl } from '../utils/api';
 import './AdminDashboard.css';
 
 function AdminDashboard() {
