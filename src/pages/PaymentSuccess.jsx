@@ -65,7 +65,7 @@ function PaymentSuccess() {
   };
 
   const handleViewOrders = () => {
-    navigate('/addtocart'); // Assuming this shows order history
+    navigate('/cart'); // Assuming this shows order history
   };
 
   if (orderStatus === 'confirmed') {
