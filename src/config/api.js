@@ -1,9 +1,9 @@
 // API configuration for different environments
 const API_CONFIG = {
   // For local development: use relative paths (will be proxied by Vite)
-  // For production: use your actual Hobby Dyno URL
+  // For production: use your actual Heroku URL
   BASE_URL: import.meta.env.MODE === 'production' 
-    ? import.meta.env.VITE_API_URL || 'https://your-hobby-dyno-url.herokuapp.com'
+    ? import.meta.env.VITE_API_URL || 'https://bnsbackend-d76688301766.herokuapp.com'
     : '',
   
   // API endpoints

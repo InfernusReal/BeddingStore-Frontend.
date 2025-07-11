@@ -1,6 +1,6 @@
 // Utility to handle API URLs and image URLs for different environments
 const IS_PRODUCTION = import.meta.env.MODE === 'production';
-const PRODUCTION_API_URL = import.meta.env.VITE_API_URL || 'https://your-hobby-dyno-url.herokuapp.com';
+const PRODUCTION_API_URL = import.meta.env.VITE_API_URL || 'https://bnsbackend-d76688301766.herokuapp.com';
 
 // Get API URL
 export const getApiUrl = (endpoint) => {
@@ -8,7 +8,9 @@ export const getApiUrl = (endpoint) => {
   const cleanEndpoint = endpoint.startsWith('/') ? endpoint : `/${endpoint}`;
   
   if (IS_PRODUCTION) {
-    return `${PRODUCTION_API_URL}${cleanEndpoint}`;
+    const url = `${PRODUCTION_API_URL}${cleanEndpoint}`;
+    console.log('🌐 Production API call:', url); // Debug log
+    return url;
   } else {
     // In development, use relative paths (will be proxied by Vite)
     return cleanEndpoint;
