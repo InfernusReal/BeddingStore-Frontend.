@@ -15,25 +15,38 @@ export const getApiUrl = (endpoint) => {
   }
 };
 
+// Create a simple placeholder SVG to avoid 404s
+const createPlaceholderSVG = (width = 240, height = 240) => {
+  return `data:image/svg+xml;charset=UTF-8,%3Csvg width='${width}' height='${height}' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='100%25' height='100%25' fill='%23f0f0f0'/%3E%3Ctext x='50%25' y='50%25' font-size='14' fill='%23999' text-anchor='middle' dy='.3em'%3ENo Image%3C/text%3E%3C/svg%3E`;
+};
+
 // Get image URL (for images served by backend)
 export const getImageUrl = (imagePath) => {
+  console.log('🖼️ Processing image path:', imagePath);
+  
   if (!imagePath) {
-    return null; // Return null instead of placeholder to avoid loops
+    console.log('🖼️ No image path, returning placeholder');
+    return createPlaceholderSVG();
   }
   
   // If it's already a full URL (like Cloudinary), return as-is
   if (imagePath.startsWith('http')) {
+    console.log('🖼️ Cloudinary URL detected, returning:', imagePath);
     return imagePath;
   }
   
-  // For images, we always need the full URL since they're not proxied
+  // For local images, construct full URL
   const cleanPath = imagePath.startsWith('/') ? imagePath : `/${imagePath}`;
   
   if (IS_PRODUCTION) {
-    return `${PRODUCTION_API_URL}${cleanPath}`;
+    const fullUrl = `${PRODUCTION_API_URL}${cleanPath}`;
+    console.log('🖼️ Production local image URL:', fullUrl);
+    return fullUrl;
   } else {
     // In development, images need to go directly to localhost:5000
-    return `http://localhost:5000${cleanPath}`;
+    const devUrl = `http://localhost:5000${cleanPath}`;
+    console.log('🖼️ Development local image URL:', devUrl);
+    return devUrl;
   }
 };
 

@@ -5,9 +5,9 @@ import { getApiUrl, getImageUrl } from '../utils/api';
 import './HomePage.css';
 
 const heroImages = [
-  '/hero_files/image1.png',
-  '/hero_files/image2.png',
-  '/hero_files/image3.png',
+  'https://bedding-store-frontend.vercel.app/hero_files/image1.png',
+  'https://bedding-store-frontend.vercel.app/hero_files/image2.png',
+  'https://bedding-store-frontend.vercel.app/hero_files/image3.png',
 ];
 
 export default function Home() {
@@ -40,6 +40,9 @@ export default function Home() {
       try {
         const colRes = await axios.get(getApiUrl('/api/collections'));
         const prodRes = await axios.get(getApiUrl('/api/products'));
+
+        console.log('🛍️ Products data:', prodRes.data);
+        console.log('🛍️ Sample product images:', prodRes.data.slice(0, 3).map(p => ({ name: p.name, image_url: p.image_url })));
 
         const merged = colRes.data
           .filter(col => col.show_on_homepage)
@@ -144,7 +147,7 @@ export default function Home() {
                         <div className="product-card-content">
                           <img
                             className="product-img"
-                            src={getImageUrl(col.products[currentCardIndex[col.id] || 0].image_url) || 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQwIiBoZWlnaHQ9IjI0MCIgdmlld0JveD0iMCAwIDI0MCAyNDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjI0MCIgaGVpZ2h0PSIyNDAiIGZpbGw9IiNmMGYwZjAiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzk5OTk5OSI+Tm8gSW1hZ2U8L3RleHQ+PC9zdmc+'}
+                            src={getImageUrl(col.products[currentCardIndex[col.id] || 0].image_url)}
                             alt={col.products[currentCardIndex[col.id] || 0].name}
                           />
                           <h3 className="product-title">{col.products[currentCardIndex[col.id] || 0].name}</h3>
@@ -201,7 +204,7 @@ export default function Home() {
                         <div className="product-card-content">
                           <img
                             className="product-img"
-                            src={getImageUrl(prod.image_url) || 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQwIiBoZWlnaHQ9IjI0MCIgdmlld0JveD0iMCAwIDI0MCAyNDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjI0MCIgaGVpZ2h0PSIyNDAiIGZpbGw9IiNmMGYwZjAiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzk5OTk5OSI+Tm8gSW1hZ2U8L3RleHQ+PC9zdmc+'}
+                            src={getImageUrl(prod.image_url)}
                             alt={prod.name}
                           />
                           <h3 className="product-title">{prod.name}</h3>
@@ -257,7 +260,7 @@ export default function Home() {
                       <div className="product-card-content">
                         <img
                           className="product-img"
-                          src={getImageUrl(prod.image_url) || 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQwIiBoZWlnaHQ9IjI0MCIgdmlld0JveD0iMCAwIDI0MCAyNDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjI0MCIgaGVpZ2h0PSIyNDAiIGZpbGw9IiNmMGYwZjAiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzk5OTk5OSI+Tm8gSW1hZ2U8L3RleHQ+PC9zdmc+'}
+                          src={getImageUrl(prod.image_url)}
                           alt={prod.name}
                         />
                         <h3 className="product-title">{prod.name}</h3>
