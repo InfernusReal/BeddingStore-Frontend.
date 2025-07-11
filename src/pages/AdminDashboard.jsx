@@ -481,9 +481,21 @@ function AdminDashboard() {
 function AdminProductCard({ prod, collection, hovered, setHovered, deleteProduct, onDoubleClick }) {
   const fallback = '/placeholder.png';
   const BASE_URL = 'http://localhost:5000';
-  const [imgSrc, setImgSrc] = React.useState(
-    prod.image_url ? `${BASE_URL}${prod.image_url}` : fallback
-  );
+  
+  // Handle both Cloudinary and local images
+  const getImageUrl = (imageUrl) => {
+    if (!imageUrl) return fallback;
+    
+    // If it's already a full URL (Cloudinary), return as-is
+    if (imageUrl.startsWith('http')) {
+      return imageUrl;
+    }
+    
+    // Local image - add base URL
+    return `${BASE_URL}${imageUrl}`;
+  };
+  
+  const [imgSrc, setImgSrc] = React.useState(getImageUrl(prod.image_url));
 
   return (
     <div

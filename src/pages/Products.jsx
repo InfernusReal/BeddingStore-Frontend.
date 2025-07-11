@@ -46,12 +46,17 @@ export default function Products() {
 
           let url = product.image_url;
 
-          // Fix double prefix
+          // If it's already a full URL (Cloudinary), leave it as-is
+          if (url.startsWith('http')) {
+            return { ...product, image_url: url };
+          }
+
+          // Fix double prefix for local images
           if (url.startsWith('/uploads/uploads/')) {
             url = url.replace('/uploads/uploads/', '/uploads/');
           }
 
-          // Add uploads prefix if missing
+          // Add uploads prefix if missing for local images
           if (!url.startsWith('/uploads/')) {
             url = `/uploads/${url.replace(/^uploads[\\/]+/, '').replace(/^\\+|^\/+/, '')}`;
           }

@@ -12,12 +12,25 @@ export default function ProductDetailView({
   saving = false,
   preview
 }) {
+  // Helper function to get image URL
+  const getImageUrl = (imageUrl) => {
+    if (!imageUrl) return '/placeholder.png';
+    
+    // If it's already a full URL (Cloudinary), return as-is
+    if (imageUrl.startsWith('http')) {
+      return imageUrl;
+    }
+    
+    // Local image - add base URL
+    return `http://localhost:5000${imageUrl}`;
+  };
+
   // User side: image left, info center, no inputs, no admin buttons
   if (!editMode) {
     return (
       <div className="product-detail-view user-mode" style={{ display: 'flex', gap: 32, alignItems: 'center', justifyContent: 'center' }}>
         <div style={{ flex: '0 0 260px', display: 'flex', justifyContent: 'center' }}>
-          <img src={product?.image_url ? `http://localhost:5000${product.image_url}` : '/placeholder.png'} alt={product?.name} style={{ width: 240, height: 240, objectFit: 'cover' }} />
+          <img src={getImageUrl(product?.image_url)} alt={product?.name} style={{ width: 240, height: 240, objectFit: 'cover' }} />
         </div>
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 18, maxWidth: 400 }}>
           <div style={{ marginBottom: 10 }}>
@@ -45,7 +58,7 @@ export default function ProductDetailView({
           <img src={preview} alt="Preview" style={{ width: 240, height: 240, objectFit: 'cover', marginTop: 8 }} />
         )}
         {!preview && (
-          <img src={product?.image_url ? `http://localhost:5000${product.image_url}` : '/placeholder.png'} alt={product?.name} style={{ width: 240, height: 240, objectFit: 'cover' }} />
+          <img src={getImageUrl(product?.image_url)} alt={product?.name} style={{ width: 240, height: 240, objectFit: 'cover' }} />
         )}
       </div>
       <form onSubmit={onSubmit} style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 16, maxWidth: 400 }}>
