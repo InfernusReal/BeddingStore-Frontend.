@@ -221,7 +221,7 @@ function AdminAnnouncements() {
                 <div key={announcement.id} className="announcement-card">
                   <div className="announcement-image">
                     <img 
-                      src={getImageUrl(`/images/announcements/${announcement.image_path}`)} 
+                      src={getImageUrl(announcement.image_path)} 
                       alt="Announcement" 
                       onError={(e) => {
                         console.error('Admin image failed to load:', announcement.image_path);

@@ -481,20 +481,6 @@ function AdminDashboard() {
 
 function AdminProductCard({ prod, collection, hovered, setHovered, deleteProduct, onDoubleClick }) {
   const fallback = '/placeholder.png';
-  const BASE_URL = import.meta.env.MODE === 'production' ? 'https://bnsbackend-d76688301766.herokuapp.com' : 'http://localhost:5000';
-  
-  // Handle both Cloudinary and local images
-  const getImageUrl = (imageUrl) => {
-    if (!imageUrl) return fallback;
-    
-    // If it's already a full URL (Cloudinary), return as-is
-    if (imageUrl.startsWith('http')) {
-      return imageUrl;
-    }
-    
-    // Local image - add base URL
-    return `${BASE_URL}${imageUrl}`;
-  };
   
   const [imgSrc, setImgSrc] = React.useState(getImageUrl(prod.image_url));
 

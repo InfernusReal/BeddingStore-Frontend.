@@ -273,7 +273,7 @@ export default function Announcements() {
 
                 <div className="post-image">
                   <img 
-                    src={getImageUrl(`/images/announcements/${announcement.image_path}`)} 
+                    src={getImageUrl(announcement.image_path)} 
                     alt="Announcement" 
                     loading="lazy"
                     onError={(e) => {
@@ -344,7 +344,7 @@ export default function Announcements() {
 
               <div className="modal-content">
                 <div className="announcement-preview">
-                  <img src={getImageUrl(`/images/announcements/${selectedAnnouncement.image_path}`)} alt="Announcement" />
+                  <img src={getImageUrl(selectedAnnouncement.image_path)} alt="Announcement" />
                   <p>{selectedAnnouncement.description}</p>
                 </div>
 

@@ -13,19 +13,6 @@ export default function ProductDetailView({
   saving = false,
   preview
 }) {
-  // Helper function to get image URL
-  const getImageUrl = (imageUrl) => {
-    if (!imageUrl) return '/placeholder.png';
-    
-    // If it's already a full URL (Cloudinary), return as-is
-    if (imageUrl.startsWith('http')) {
-      return imageUrl;
-    }
-    
-    // Local image - add base URL
-    return getImageUrl(imageUrl);
-  };
-
   // User side: image left, info center, no inputs, no admin buttons
   if (!editMode) {
     return (
