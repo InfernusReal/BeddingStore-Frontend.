@@ -148,3 +148,59 @@ self.addEventListener('notificationclick', (event) => {
     );
   }
 });
+
+// Handle notification click
+self.addEventListener('notificationclick', (event) => {
+  console.log('🔔 Notification clicked:', event.notification.tag);
+  
+  event.notification.close();
+  
+  // Handle different notification types
+  const notificationData = event.notification.data;
+  let urlToOpen = '/';
+  
+  if (notificationData) {
+    if (notificationData.type === 'product') {
+      urlToOpen = `/product/${notificationData.id}`;
+    } else if (notificationData.type === 'announcement') {
+      urlToOpen = '/announcements';
+    }
+  }
+  
+  // Open the app or focus existing window
+  event.waitUntil(
+    clients.matchAll({ type: 'window' }).then((clientList) => {
+      // If app is already open, focus it
+      for (const client of clientList) {
+        if (client.url === self.location.origin + urlToOpen && 'focus' in client) {
+          return client.focus();
+        }
+      }
+      // Otherwise open new window
+      if (clients.openWindow) {
+        return clients.openWindow(urlToOpen);
+      }
+    })
+  );
+});
+
+// Handle push events (for future server-sent notifications)
+self.addEventListener('push', (event) => {
+  console.log('📨 Push received:', event);
+  
+  if (!event.data) return;
+  
+  const data = event.data.json();
+  const options = {
+    body: data.body,
+    icon: '/icon2.png',
+    badge: '/icon2.png',
+    vibrate: [200, 100, 200],
+    tag: data.tag || 'bns-notification',
+    data: data.data || {}
+  };
+  
+  event.waitUntil(
+    self.registration.showNotification(data.title, options)
+  );
+});
