@@ -85,6 +85,7 @@ export default function ProductDetail() {
           product_id: product.id,
           product_name: product.name,
           product_slug: product.slug,
+          product_image: product.image_url, // Add image URL to order data
           quantity: quantity,
           price: product.price,
           subtotal: product.price * quantity

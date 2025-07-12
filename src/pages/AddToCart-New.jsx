@@ -36,8 +36,40 @@ const AddToCartNew = () => {
       const cartOrders = response.data.filter(order => order.status === 'temp');
       console.log('🛒 FILTERED CART ORDERS:', cartOrders);
       
-      setCartItems(cartOrders);
-      console.log('🛒 CART ITEMS SET TO STATE:', cartOrders);
+      // DEBUG: Check what image data we have
+      cartOrders.forEach(order => {
+        console.log('🛒 CART ITEM DEBUG:', {
+          id: order.id,
+          product_name: order.product_name,
+          product_image: order.product_image,
+          image_url: order.image_url,
+          product_slug: order.product_slug
+        });
+      });
+      
+      // If cart items don't have images, fetch them from products
+      const enrichedCartItems = await Promise.all(
+        cartOrders.map(async (order) => {
+          if (!order.product_image && !order.image_url && order.product_slug) {
+            try {
+              console.log('🛒 FETCHING PRODUCT DATA for slug:', order.product_slug);
+              const productRes = await axios.get(`${getApiUrl('api/products/slug')}/${order.product_slug}`);
+              console.log('🛒 PRODUCT DATA FETCHED:', productRes.data);
+              return {
+                ...order,
+                product_image: productRes.data.image_url
+              };
+            } catch (err) {
+              console.error('🛒 ERROR FETCHING PRODUCT DATA:', err);
+              return order;
+            }
+          }
+          return order;
+        })
+      );
+      
+      console.log('🛒 ENRICHED CART ITEMS:', enrichedCartItems);
+      setCartItems(enrichedCartItems);
       
     } catch (error) {
       console.error('🛒 ERROR FETCHING CART ITEMS FROM DATABASE:', error);
@@ -69,6 +101,7 @@ const AddToCartNew = () => {
           product_id: product.id,
           product_name: product.name,
           product_slug: product.slug,
+          product_image: product.image_url, // Add image URL to order data
           quantity: quantity,
           price: product.price,
           subtotal: product.price * quantity
@@ -154,7 +187,7 @@ const AddToCartNew = () => {
           name: order.product_name,
           slug: order.product_slug,
           price: order.price,
-          image_url: order.image_url
+          image_url: order.product_image || order.image_url
         }, newQuantity);
       }
     } catch (error) {
@@ -344,7 +377,7 @@ const AddToCartNew = () => {
                 >
                   <div className="new-item-image">
                     <img 
-                      src={getImageUrl(item.product_image || item.image_url)} 
+                      src={getImageUrl(item.product_image || item.image_url || '/placeholder.png')} 
                       alt={item.product_name}
                       onError={(e) => {
                         e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjBmMGYwIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OTk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPk5vIEltYWdlPC90ZXh0Pjwvc3ZnPg==';
