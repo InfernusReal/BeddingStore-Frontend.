@@ -1,0 +1,33 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Circle -->
+  <circle cx="256" cy="256" r="256" fill="#ffffff"/>
+  
+  <!-- Outer Ring -->
+  <circle cx="256" cy="256" r="240" fill="none" stroke="#d4af37" stroke-width="8"/>
+  
+  <!-- Inner Background -->
+  <circle cx="256" cy="256" r="200" fill="#f8f8f8"/>
+  
+  <!-- B&S Letters -->
+  <g transform="translate(256, 256)">
+    <!-- B Letter -->
+    <text x="-60" y="20" font-family="Arial, sans-serif" font-size="120" font-weight="bold" fill="#d4af37" text-anchor="middle">B</text>
+    
+    <!-- Ampersand -->
+    <text x="0" y="15" font-family="Arial, sans-serif" font-size="80" font-weight="normal" fill="#8b7355" text-anchor="middle">&amp;</text>
+    
+    <!-- S Letter -->
+    <text x="60" y="20" font-family="Arial, sans-serif" font-size="120" font-weight="bold" fill="#d4af37" text-anchor="middle">S</text>
+  </g>
+  
+  <!-- Decorative Elements (Bed/Pillow Icons) -->
+  <g transform="translate(256, 340)">
+    <!-- Pillow/Bedding representation -->
+    <rect x="-80" y="-15" width="160" height="30" rx="15" fill="#d4af37" opacity="0.3"/>
+    <rect x="-70" y="-10" width="140" height="20" rx="10" fill="#d4af37" opacity="0.5"/>
+    <rect x="-60" y="-5" width="120" height="10" rx="5" fill="#d4af37"/>
+  </g>
+  
+  <!-- Subtitle -->
+  <text x="256" y="420" font-family="Arial, sans-serif" font-size="24" font-weight="normal" fill="#8b7355" text-anchor="middle">BEDDING STORE</text>
+</svg>
