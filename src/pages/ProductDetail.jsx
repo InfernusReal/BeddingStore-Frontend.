@@ -26,34 +26,90 @@ export default function ProductDetail() {
   const [isSubmittingReview, setIsSubmittingReview] = useState(false);
 
   function handleAddToCart() {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-    // Use the fetched product from state
     if (!product) return;
-    const fixed = fixImage(product);
-    const cartProduct = {
-      name: fixed.name,
-      price: fixed.price,
-      description: fixed.description,
-      image_url: fixed.image_url,
-      slug: product.slug,
-      quantity: quantity
-    };
-
-    // Check if product already exists in cart
-    const existingIndex = cart.findIndex(p => p.name === cartProduct.name);
-    if (existingIndex !== -1) {
-      // Update quantity if already exists
-      cart[existingIndex].quantity += quantity;
-      alert(`Updated quantity! ${cart[existingIndex].quantity} pieces in cart.`);
-    } else {
-      // Add new product to cart
-      cart.push(cartProduct);
+    
+    console.log('🛒 PRODUCT PAGE: Add to cart button clicked!');
+    console.log('🛒 PRODUCT PAGE: Product data:', product);
+    console.log('🛒 PRODUCT PAGE: Quantity:', quantity);
+    console.log('🛒 PRODUCT PAGE: window.addToCart exists?', !!window.addToCart);
+    
+    // Force call the database addToCart function
+    if (window.addToCart) {
+      console.log('🛒 PRODUCT PAGE: Calling window.addToCart');
+      const productData = {
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        slug: product.slug,
+        image_url: product.image_url,
+        description: product.description
+      };
+      window.addToCart(productData, quantity);
+      
+      // Force cart refresh
+      localStorage.setItem('cartNeedsRefresh', 'true');
+      localStorage.setItem('forceCartRefresh', 'true');
+      
+      // Dispatch a custom event to trigger cart refresh
+      window.dispatchEvent(new CustomEvent('cartUpdated', { detail: { action: 'add', product: product } }));
+      
       alert(`Added ${quantity} piece(s) to cart!`);
+    } else {
+      console.log('🛒 PRODUCT PAGE: window.addToCart NOT AVAILABLE, using fallback');
+      // Create a manual API call to add to cart
+      addToCartManually(product, quantity);
     }
-
-    localStorage.setItem('cart', JSON.stringify(cart));
   }
+
+  // Manual add to cart function
+  const addToCartManually = async (product, quantity) => {
+    try {
+      console.log('🛒 MANUAL: Adding to cart via API call');
+      
+      const sessionId = localStorage.getItem('userSession') || 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+      if (!localStorage.getItem('userSession')) {
+        localStorage.setItem('userSession', sessionId);
+      }
+      
+      const orderData = {
+        buyer_name: 'Guest User',
+        buyer_email: 'guest@example.com',
+        buyer_phone: '0000000000',
+        buyer_address: 'Temp Address',
+        payment_method: 'cart',
+        payment_id: 'temp',
+        total_amount: product.price * quantity,
+        status: 'temp', // Changed from 'cart' to 'temp' to fit database column
+        user_session: sessionId,
+        items: [{
+          product_id: product.id,
+          product_name: product.name,
+          product_slug: product.slug,
+          quantity: quantity,
+          price: product.price,
+          subtotal: product.price * quantity
+        }]
+      };
+
+      console.log('🛒 MANUAL: Sending order data:', orderData);
+      
+      const response = await axios.post(getApiUrl('api/orders'), orderData);
+      console.log('🛒 MANUAL: Success response:', response.data);
+      
+      // Force cart refresh
+      localStorage.setItem('cartNeedsRefresh', 'true');
+      localStorage.setItem('forceCartRefresh', 'true');
+      
+      // Dispatch a custom event to trigger cart refresh
+      window.dispatchEvent(new CustomEvent('cartUpdated', { detail: { action: 'add', product: product } }));
+      
+      alert(`Added ${quantity} piece(s) to cart!`);
+      
+    } catch (error) {
+      console.error('🛒 MANUAL: Error adding to cart:', error);
+      alert('Error adding to cart. Please try again.');
+    }
+  };
 
   // New function to fetch reviews
   const fetchReviews = async () => {

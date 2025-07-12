@@ -27,6 +27,7 @@ function Payment() {
     }
 
     console.log('Payment data loaded:', { savedFormData, savedCartItems, savedTotalPrice });
+    console.log('🛒 PAYMENT DEBUG: Cart items structure:', JSON.stringify(savedCartItems, null, 2));
     setFormData(savedFormData);
     setCartItems(savedCartItems);
     setTotalPrice(savedTotalPrice);
@@ -47,36 +48,158 @@ function Payment() {
 
     try {
       if (selectedPayment === 'cod') {
-        // For Cash on Delivery - send admin notification only
-        await sendAdminNotification();
+        // For Cash on Delivery - confirm cart checkout and send email immediately
+        await confirmCartCheckout();
         
-        // Store order in database
-        await createOrder('cod', 'N/A');
+        // Send admin notification for COD orders
+        await sendAdminNotification();
         
         // Clear cart and redirect to success
         clearCartAndRedirect('cod');
       } else if (selectedPayment === 'easypaisa') {
-        // For EasyPaisa - store pending order first (NO EMAIL YET)
-        const orderId = await createOrder('easypaisa', 'pending');
+        // For EasyPaisa - create order with pending status (DON'T confirm cart yet!)
+        await createEasyPaisaOrder();
         
-        // Store order ID for tracking
-        sessionStorage.setItem('pendingOrderId', orderId);
-        
-        // Clear cart for EasyPaisa orders too
+        // Clear cart but order stays pending until admin confirms
         sessionStorage.removeItem('cartItems');
         sessionStorage.removeItem('totalCartPrice');
         sessionStorage.removeItem('buyNowProduct');
         sessionStorage.removeItem('totalPrice');
         localStorage.removeItem('cart');
         
+        // Set cart refresh flags
+        localStorage.setItem('cartNeedsRefresh', 'true');
+        localStorage.setItem('forceCartRefresh', 'true');
+        
         // Redirect to waiting screen in same tab
-        navigate('/payment-success', { state: { paymentMethod: 'easypaisa', orderId } });
+        navigate('/payment-success', { state: { paymentMethod: 'easypaisa' } });
       }
     } catch (error) {
       console.error('Error processing order:', error);
       alert('Failed to process order. Please try again.');
     } finally {
       setLoading(false);
+    }
+  };
+
+  const confirmCartCheckout = async () => {
+    try {
+      const userSession = localStorage.getItem('userSession') || `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+      if (!localStorage.getItem('userSession')) {
+        localStorage.setItem('userSession', userSession);
+      }
+      
+      console.log('🛒 DIRECT DATABASE UPDATE - Confirming cart checkout for session:', userSession);
+      
+      // Get all cart items first
+      const cartResponse = await fetch(getApiUrl(`/api/orders/user/${userSession}`));
+      const allOrders = await cartResponse.json();
+      const cartOrders = allOrders.filter(order => order.status === 'temp');
+      
+      console.log('🛒 Found cart orders:', cartOrders.length);
+      
+      // Update each order directly using the individual confirm endpoint
+      const updatePromises = cartOrders.map(async (order) => {
+        console.log('🛒 Updating order:', order.id);
+        
+        const response = await fetch(getApiUrl(`/api/orders/${order.id}/confirm`), {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+        
+        if (response.ok) {
+          console.log('🛒 Successfully updated order:', order.id);
+          return true;
+        } else {
+          console.error('🛒 Failed to update order:', order.id);
+          return false;
+        }
+      });
+      
+      await Promise.all(updatePromises);
+      
+      console.log('🛒 All cart items updated to confirmed status');
+      
+      return { message: 'Cart checkout confirmed', ordersUpdated: cartOrders.length };
+      
+    } catch (error) {
+      console.error('🛒 Error confirming cart checkout:', error);
+      throw error;
+    }
+  };
+
+  const createEasyPaisaOrder = async () => {
+    try {
+      const userSession = localStorage.getItem('userSession') || `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+      if (!localStorage.getItem('userSession')) {
+        localStorage.setItem('userSession', userSession);
+      }
+      
+      console.log('💳 EASYPAISA ORDER - Creating pending order for session:', userSession);
+      
+      // Create a new pending order for EasyPaisa (don't update existing cart items)
+      const orderData = {
+        buyer_name: formData.name,
+        buyer_email: formData.email,
+        buyer_phone: formData.phone,
+        buyer_address: formData.address,
+        payment_method: 'easypaisa',
+        payment_id: 'pending_easypaisa',
+        total_amount: totalPrice,
+        status: 'pending', // Keep as pending until admin confirms
+        user_session: userSession,
+        items: cartItems.map(item => ({
+          product_id: item.id || item.product_id,
+          product_name: item.name,
+          product_slug: item.slug,
+          quantity: item.quantity || 1,
+          price: item.price,
+          subtotal: (item.quantity || 1) * item.price
+        }))
+      };
+
+      console.log('💳 EASYPAISA: Creating order with data:', orderData);
+      
+      const response = await fetch(getApiUrl('/api/orders'), {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(orderData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to create EasyPaisa order');
+      }
+
+      const result = await response.json();
+      console.log('💳 EASYPAISA: Order created successfully:', result);
+      
+      // Now clear the temp cart items (since we created a new pending order)
+      const cartResponse = await fetch(getApiUrl(`/api/orders/user/${userSession}`));
+      const allOrders = await cartResponse.json();
+      const tempOrders = allOrders.filter(order => order.status === 'temp');
+      
+      // Delete temp cart items
+      await Promise.all(tempOrders.map(async (order) => {
+        await fetch(getApiUrl(`/api/orders/${order.id}`), {
+          method: 'DELETE',
+          headers: {
+            'User-Session': userSession,
+            'Content-Type': 'application/json'
+          }
+        });
+      }));
+      
+      console.log('💳 EASYPAISA: Cleared temp cart items');
+      
+      return result;
+      
+    } catch (error) {
+      console.error('💳 EASYPAISA: Error creating order:', error);
+      throw error;
     }
   };
 
@@ -105,6 +228,12 @@ function Payment() {
   };
 
   const createOrder = async (paymentMethod, paymentId) => {
+    // Get or create user session
+    const userSession = localStorage.getItem('userSession') || `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+    if (!localStorage.getItem('userSession')) {
+      localStorage.setItem('userSession', userSession);
+    }
+    
     const orderData = {
       buyer_name: formData.name,
       buyer_email: formData.email,
@@ -114,6 +243,7 @@ function Payment() {
       payment_id: paymentId,
       total_amount: totalPrice,
       status: paymentMethod === 'cod' ? 'confirmed' : 'pending',
+      user_session: userSession,
       items: cartItems.map(item => ({
         product_id: item.id || item.product_id,
         product_name: item.name,
@@ -152,6 +282,14 @@ function Payment() {
     
     // Also clear localStorage cart
     localStorage.removeItem('cart');
+    
+    // Set multiple refresh flags
+    localStorage.setItem('cartNeedsRefresh', 'true');
+    localStorage.setItem('orderCompleted', Date.now().toString());
+    localStorage.setItem('forceCartRefresh', 'true');
+    
+    // Dispatch a custom event to notify other components
+    window.dispatchEvent(new CustomEvent('cartUpdated', { detail: { action: 'checkout_completed' } }));
 
     // For COD, show success and close tab after a few seconds
     if (paymentMethod === 'cod') {
@@ -201,7 +339,7 @@ function Payment() {
             <h4>Items ({cartItems.length})</h4>
             {cartItems.map((item, index) => (
               <div key={index} className="order-item">
-                <span className="item-name">{item.name}</span>
+                <span className="item-name">{item.name || item.product_name || 'Unknown Product'}</span>
                 <div className="item-details">
                   {item.quantity && <span className="item-qty">x{item.quantity}</span>}
                   <span className="item-price">PKR {item.price} each</span>

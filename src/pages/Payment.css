@@ -73,7 +73,7 @@
 
 .item-name {
   flex: 1;
-  color: #333;
+  color: #333 !important;
   font-weight: 500;
 }
 

@@ -17,7 +17,7 @@ import AdminProfits from './pages/AdminProfits';
 import AdminSettings from './pages/AdminSettings';
 import AdminLogin from './pages/AdminLogin';
 import Announcements from './pages/Announcements';
-import AddToCart from './pages/AddToCart';
+import AddToCartNew from './pages/AddToCart-New';
 import AdminProductDetail from './pages/AdminProductDetail';
 import ProductDetail from './pages/ProductDetail';
 import UserDetails from './pages/UserDetails';
@@ -86,7 +86,7 @@ function AppRoutes() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/announcements" element={<Announcements />} />
-        <Route path="/addtocart" element={<AddToCart />} />
+        <Route path="/cart" element={<AddToCartNew />} />
         <Route path="/product/:slug" element={<ProductDetail />} />
         
         {/* Admin Login Route (not protected) */}

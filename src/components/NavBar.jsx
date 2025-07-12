@@ -70,7 +70,7 @@ const NavBar = () => {
       </ul>
       
       <div className="navbar-actions">
-        <Link to="/addtocart" className="addtocart-btn" aria-label="Add to Cart">
+        <Link to="/cart" className="addtocart-btn" aria-label="Add to Cart">
           <img src="/add_shopping_cart_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="Add to Cart" />
         </Link>
         {/* Remove dark/light mode toggle button on AdminSettings route */}

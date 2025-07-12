@@ -1,17 +1,17 @@
 // Utility to handle API URLs and image URLs for different environments
 const IS_PRODUCTION = import.meta.env.MODE === 'production';
-const PRODUCTION_API_URL = import.meta.env.VITE_API_URL || 'https://bnsbackend-d76688301766.herokuapp.com';
+const PRODUCTION_API_URL = import.meta.env.VITE_API_URL || 'https://bns-backend-50d4b78b5740.herokuapp.com';
 
 // Get API URL
-export const getApiUrl = (endpoint) => {
-  // Remove leading slash if present to avoid double slashes
-  const cleanEndpoint = endpoint.startsWith('/') ? endpoint : `/${endpoint}`;
+export const getApiUrl = (endpoint = '') => {
+  // Clean endpoint - remove leading slash to avoid double slashes
+  const cleanEndpoint = endpoint.startsWith('/') ? endpoint.substring(1) : endpoint;
   
   if (IS_PRODUCTION) {
-    return `${PRODUCTION_API_URL}${cleanEndpoint}`;
+    return `${PRODUCTION_API_URL}/${cleanEndpoint}`;
   } else {
-    // In development, use relative paths (will be proxied by Vite)
-    return cleanEndpoint;
+    // In development, use localhost for API calls
+    return cleanEndpoint ? `http://localhost:5000/${cleanEndpoint}` : 'http://localhost:5000';
   }
 };
 
