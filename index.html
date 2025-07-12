@@ -33,8 +33,15 @@
     <link rel="manifest" href="/manifest.json" />
     
     <!-- Theme Color -->
-    <meta name="theme-color" content="#667eea" />
-    <meta name="msapplication-TileColor" content="#667eea" />
+    <meta name="theme-color" content="#d4af37" />
+    <meta name="msapplication-TileColor" content="#d4af37" />
+    
+    <!-- PWA Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="BnS Store" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="BnS Store" />
     
     <!-- Preconnect for Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -74,5 +81,20 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/sw.js')
+            .then(function(registration) {
+              console.log('✅ Service Worker registered successfully:', registration.scope);
+            })
+            .catch(function(error) {
+              console.log('❌ Service Worker registration failed:', error);
+            });
+        });
+      }
+    </script>
   </body>
 </html>
