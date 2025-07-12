@@ -1,14 +1,16 @@
 {
-  "name": "The Bedding Store by BnS",
-  "short_name": "BeddingStore",
-  "description": "Pakistan's premier destination for luxury bedding, designer home textiles, and premium lifestyle products",
+  "name": "BnS - The Bedding Store",
+  "short_name": "BnS Store",
+  "description": "Pakistan's premier destination for luxury bedding, designer home textiles, and premium lifestyle products. Shop premium bedding, comforters, pillows, and home decor with nationwide delivery.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#667eea",
+  "theme_color": "#d4af37",
   "orientation": "portrait-primary",
-  "categories": ["shopping", "lifestyle", "home"],
+  "categories": ["shopping", "lifestyle", "home", "business"],
   "lang": "en-US",
+  "scope": "/",
+  "id": "com.bns.beddingstore",
   "icons": [
     {
       "src": "/favicon.svg",
@@ -27,6 +29,78 @@
       "sizes": "200x60",
       "type": "image/svg+xml",
       "purpose": "any"
+    },
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
     }
-  ]
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshot-mobile.png",
+      "sizes": "375x667",
+      "type": "image/png",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "/screenshot-desktop.png",
+      "sizes": "1920x1080",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Products",
+      "short_name": "Products",
+      "description": "Browse our product catalog",
+      "url": "/products",
+      "icons": [
+        {
+          "src": "/favicon.svg",
+          "sizes": "64x64",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "name": "Cart",
+      "short_name": "Cart",
+      "description": "View your shopping cart",
+      "url": "/cart",
+      "icons": [
+        {
+          "src": "/favicon.svg",
+          "sizes": "64x64",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "name": "Contact",
+      "short_name": "Contact",
+      "description": "Get in touch with us",
+      "url": "/contact",
+      "icons": [
+        {
+          "src": "/favicon.svg",
+          "sizes": "64x64",
+          "type": "image/svg+xml"
+        }
+      ]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "edge_side_panel": {
+    "preferred_width": 400
+  }
 }
