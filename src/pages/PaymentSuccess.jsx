@@ -126,8 +126,8 @@ function PaymentSuccess() {
           <div className="easypaisa-instructions">
             <h3>Complete Your Payment:</h3>
             <div className="payment-details">
-              <p><strong>EasyPaisa Number:</strong> 03XX-XXXXXXX</p>
-              <p><strong>Account Name:</strong> [Your Business Name]</p>
+              <p><strong>EasyPaisa Number:</strong> 03215088506</p>
+              <p><strong>Account Name:</strong> The Bedding Store</p>
               <p><strong>Amount:</strong> PKR {sessionStorage.getItem('finalTotal')}</p>
               {orderId && <p><strong>Order ID:</strong> #{orderId}</p>}
             </div>
