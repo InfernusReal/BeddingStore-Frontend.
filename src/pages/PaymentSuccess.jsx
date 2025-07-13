@@ -123,6 +123,7 @@ function PaymentSuccess() {
             Your order has been created and is waiting for payment confirmation.
           </p>
           
+          {/* EasyPaisa payment instructions - Updated July 13, 2025 */}
           <div className="easypaisa-instructions">
             <h3>Complete Your Payment:</h3>
             <div className="payment-details">
