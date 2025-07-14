@@ -726,6 +726,7 @@ body.dark-mode .product-card {
   flex-shrink: 0;
   width: 100%;
   padding-top: 0.5rem;
+  padding-bottom: 0.5rem; /* Add bottom padding to ensure button visibility */
 }
 .product-card-buttons button {
   background: #fff;
@@ -877,7 +878,7 @@ body.dark-mode .modern-btn:focus-visible {
   background: var(--card-bg, #fff);
   border-radius: 16px;
   box-shadow: 0 4px 24px 0 #0002;
-  padding: 1.2rem;
+  padding: 1.2rem 1.2rem 1.2rem 1.2rem;
   margin: 0.7rem;
   display: flex;
   flex-direction: column;
@@ -886,7 +887,8 @@ body.dark-mode .modern-btn:focus-visible {
   border: var(--card-border-width, 2px) solid var(--card-border, #222);
   min-width: 220px;
   max-width: 260px;
-  min-height: 400px !important;
+  min-height: 450px;
+  height: auto;
   position: relative;
   cursor: pointer;
 }
@@ -983,7 +985,7 @@ body.dark-mode .collection-block:hover {
   flex: 1;
   width: 100%;
   justify-content: space-between;
-  min-height: 200px; /* Ensure consistent content height */
+  min-height: 250px; /* Increase minimum height */
   height: 100%;
 }
 
@@ -991,9 +993,10 @@ body.dark-mode .collection-block:hover {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   height: 100%;
-  min-height: 200px; /* Ensure consistent minimum height */
+  min-height: 180px; /* Reduce minimum height */
+  margin-bottom: 1rem; /* Add margin for button spacing */
 }
 
 .product-title {
@@ -1030,10 +1033,10 @@ body.dark-mode .collection-block:hover {
   color: #28a745;
   font-size: 1.2rem;
   font-weight: 600;
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.4rem;
   flex-shrink: 0;
   text-align: center; /* Center align the price */
-  margin-top: auto; /* Push price to bottom of card info */
+  margin-top: 0.5rem; /* Reduce top margin */
 }
 
 /* MOBILE PRODUCT NAVIGATION - COMPLETELY RESPONSIVE */
