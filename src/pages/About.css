@@ -805,6 +805,25 @@ body.dark-mode .showcase-item p {
   color: #ffffff;
 }
 
+/* WhatsApp specific styling */
+.social-btn.whatsapp {
+  border-color: #25D366;
+}
+
+.social-btn.whatsapp:hover {
+  background: #25D366;
+  border-color: #25D366;
+  box-shadow: 0 15px 35px rgba(37, 211, 102, 0.4);
+}
+
+.social-btn.whatsapp svg {
+  color: #25D366;
+}
+
+.social-btn.whatsapp:hover svg {
+  color: white;
+}
+
 /* Dark mode adjustments for social buttons */
 body.dark-mode .social-btn.twitter {
   border-color: #ffffff;
@@ -822,6 +841,74 @@ body.dark-mode .social-btn.twitter:hover {
 
 body.dark-mode .social-btn.twitter:hover svg {
   color: #ffffff;
+}
+
+body.dark-mode .social-btn.whatsapp {
+  border-color: #25D366;
+  background: rgba(37, 211, 102, 0.1);
+}
+
+body.dark-mode .social-btn.whatsapp svg {
+  color: #25D366;
+}
+
+body.dark-mode .social-btn.whatsapp:hover {
+  background: #25D366;
+  border-color: #25D366;
+}
+
+body.dark-mode .social-btn.whatsapp:hover svg {
+  color: white;
+}
+
+/* Made by InfernusReal styling */
+.made-by-section {
+  margin-top: 2rem;
+  text-align: center;
+  width: 100%;
+}
+
+.made-by-text {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.made-by-text:hover {
+  color: var(--luxury-gold);
+  background: rgba(212, 175, 55, 0.1);
+  border-color: rgba(212, 175, 55, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.2);
+}
+
+.made-by-text:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+}
+
+/* Dark mode adjustments for made by text */
+body.dark-mode .made-by-text {
+  color: rgba(255, 255, 255, 0.6);
+  background: rgba(214, 184, 143, 0.1);
+  border-color: rgba(214, 184, 143, 0.2);
+}
+
+body.dark-mode .made-by-text:hover {
+  color: #d6b88f;
+  background: rgba(214, 184, 143, 0.2);
+  border-color: rgba(214, 184, 143, 0.4);
+  box-shadow: 0 8px 25px rgba(214, 184, 143, 0.3);
 }
 
 /* Keyframe Animations */
