@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import './About.css';
+// CSS imported globally in App.jsx
 
 export default function About() {
   const navigate = useNavigate();

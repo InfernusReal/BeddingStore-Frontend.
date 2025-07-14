@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { getApiUrl, getImageUrl } from '../utils/api';
-import './HomePage.css';
+// CSS imported globally in App.jsx
 
 const heroImages = [
   'https://bedding-store-frontend.vercel.app/hero_files/image1.png',
