@@ -274,7 +274,19 @@ body.dark-mode .collection-heading-animated::after {
   box-sizing: border-box;
   position: relative;
   overflow: hidden;
-  transition: box-shadow 0.22s, border-color 0.22s, background 0.22s;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: pointer;
+}
+
+.product-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 12px 40px 0 rgba(34,34,34,0.15);
+  border-color: var(--card-hover-border, #bfa06a);
+}
+
+.product-card:active {
+  transform: translateY(-4px) scale(1.01);
+  transition: all 0.15s ease;
 }
 .product-card-content {
   flex: 1 1 0%;
@@ -350,6 +362,23 @@ body.dark-mode .collection-heading-animated::after {
   border-radius: 28px;
   border: 1.5px solid var(--btn-hover-border, #bfa06a);
   box-shadow: 0 4px 18px #bfa06a33;
+}
+
+/* LIGHT MODE DEFAULTS */
+:root {
+  --card-bg: #ffffff;
+  --card-border: #23272f;
+  --card-hover-border: #bfa06a;
+  --card-hover-bg: #ffffff;
+  --card-title: #23272f;
+  --card-desc: #555555;
+  --card-price: #bfa06a;
+  --btn-bg: linear-gradient(90deg, #23272f 0%, #23272f 100%);
+  --btn-color: #ffffff;
+  --btn-border: #23272f;
+  --btn-hover-bg: linear-gradient(90deg, #e7d3b0 0%, #bfa06a 100%);
+  --btn-hover-color: #23272f;
+  --btn-hover-border: #bfa06a;
 }
 
 /* DARK MODE */
