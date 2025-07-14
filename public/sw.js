@@ -1,16 +1,15 @@
 // BnS Store Service Worker
 // Version 2.0.0 - Force cache refresh for UI changes
 
-const CACHE_NAME = 'bns-store-v2.0.0';
+const CACHE_NAME = 'bns-store-v2.1.0';
 const urlsToCache = [
   '/',
-  '/products',
-  '/cart',
-  '/contact',
   '/manifest.json',
   '/favicon.svg',
   '/logo.svg',
-  // Add more critical assets here
+  '/icon-512x512.png',
+  '/vite.svg',
+  // Only cache files that actually exist
 ];
 
 // Install event - cache critical resources
@@ -20,12 +19,22 @@ self.addEventListener('install', (event) => {
     caches.open(CACHE_NAME)
       .then((cache) => {
         console.log('✅ Opened cache');
-        return cache.addAll(urlsToCache);
+        // Cache files individually to prevent one failure from breaking everything
+        return Promise.allSettled(
+          urlsToCache.map(url => 
+            cache.add(url).catch(err => {
+              console.warn(`⚠️ Failed to cache ${url}:`, err);
+              return null;
+            })
+          )
+        );
       })
       .catch((error) => {
-        console.error('❌ Failed to cache resources:', error);
+        console.error('❌ Failed to open cache:', error);
       })
   );
+  // Force immediate activation
+  self.skipWaiting();
 });
 
 // Activate event - clean up old caches
@@ -43,6 +52,8 @@ self.addEventListener('activate', (event) => {
       );
     })
   );
+  // Take control of all pages immediately
+  self.clients.claim();
 });
 
 // Fetch event - network first strategy for CSS/JS, cache for other resources

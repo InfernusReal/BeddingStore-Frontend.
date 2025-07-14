@@ -95,11 +95,25 @@
           navigator.serviceWorker.register('/sw.js')
             .then(function(registration) {
               console.log('✅ Service Worker registered successfully:', registration.scope);
+              
+              // Check for updates
+              registration.addEventListener('updatefound', function() {
+                console.log('🔄 Service Worker update found');
+                const newWorker = registration.installing;
+                newWorker.addEventListener('statechange', function() {
+                  if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                    console.log('🔄 New version available, refreshing...');
+                    window.location.reload();
+                  }
+                });
+              });
             })
             .catch(function(error) {
-              console.log('❌ Service Worker registration failed:', error);
+              console.warn('⚠️ Service Worker registration failed, but app will continue to work:', error);
             });
         });
+      } else {
+        console.log('ℹ️ Service Worker not supported in this browser');
       }
     </script>
   </body>
