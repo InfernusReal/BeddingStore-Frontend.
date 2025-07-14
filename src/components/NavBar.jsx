@@ -5,9 +5,9 @@ import "./NavBar.css";
 
 const NavBar = () => {
   const [darkMode, setDarkMode] = useState(() => {
-    // Check localStorage for saved mode, default to dark mode
+    // Check localStorage for saved mode, default to light mode
     const saved = localStorage.getItem("darkMode");
-    return saved === "false" ? false : true; // Default to dark mode
+    return saved === "true" ? true : false; // Default to light mode
   });
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const location = useLocation();
