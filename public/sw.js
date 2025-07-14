@@ -1,7 +1,7 @@
 // BnS Store Service Worker
-// Version 1.0.0
+// Version 2.0.0 - Force cache refresh for UI changes
 
-const CACHE_NAME = 'bns-store-v1.0.0';
+const CACHE_NAME = 'bns-store-v2.0.0';
 const urlsToCache = [
   '/',
   '/products',
@@ -45,8 +45,41 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-// Fetch event - serve from cache, fallback to network
+// Fetch event - network first strategy for CSS/JS, cache for other resources
 self.addEventListener('fetch', (event) => {
+  const url = new URL(event.request.url);
+  
+  // Skip non-GET requests and extension-specific requests
+  if (event.request.method !== 'GET' || 
+      url.protocol === 'chrome-extension:' || 
+      url.protocol === 'moz-extension:' ||
+      url.protocol === 'safari-extension:') {
+    return;
+  }
+  
+  // Network first strategy for CSS and JS files to ensure latest changes
+  if (url.pathname.endsWith('.css') || url.pathname.endsWith('.js') || url.pathname.includes('/assets/')) {
+    event.respondWith(
+      fetch(event.request)
+        .then(response => {
+          if (response.ok) {
+            // Cache the new version
+            const responseClone = response.clone();
+            caches.open(CACHE_NAME).then(cache => {
+              cache.put(event.request, responseClone);
+            });
+          }
+          return response;
+        })
+        .catch(() => {
+          // Fallback to cache if network fails
+          return caches.match(event.request);
+        })
+    );
+    return;
+  }
+  
+  // Cache first strategy for other resources
   event.respondWith(
     caches.match(event.request)
       .then((response) => {

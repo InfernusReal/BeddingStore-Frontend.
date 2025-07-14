@@ -15,8 +15,8 @@ import AdminCollections from './pages/AdminCollections';
 import AdminAnnouncements from './pages/AdminAnnouncements';
 
 // Import ALL CSS files globally to prevent route-based caching issues
-import './pages/HomePage.css?v=20250714035117';
-import './pages/About.css?v=20250714035117';
+import './pages/HomePage.css?v=20250714110900';
+import './pages/About.css?v=20250714110900';
 import AdminProfits from './pages/AdminProfits';
 import AdminSettings from './pages/AdminSettings';
 import AdminLogin from './pages/AdminLogin';
