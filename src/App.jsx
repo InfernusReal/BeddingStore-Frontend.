@@ -28,6 +28,58 @@ import UserDetails from './pages/UserDetails';
 import Payment from './pages/Payment';
 import PaymentSuccess from './pages/PaymentSuccess';
 
+// Sexy scrollbar styles for both light and dark mode
+const scrollbarStyles = `
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.03);
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #d4af37, #bfa06a);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #f2d06b, #d4af37);
+    box-shadow: 0 2px 8px rgba(212, 175, 55, 0.3);
+  }
+  
+  ::-webkit-scrollbar-thumb:active {
+    background: linear-gradient(135deg, #bfa06a, #d4af37);
+  }
+  
+  /* Dark mode aesthetic scrollbar */
+  body.dark-mode ::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+  }
+  
+  body.dark-mode ::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #f2d06b, #d4af37);
+  }
+  
+  body.dark-mode ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #ffed4e, #f2d06b);
+    box-shadow: 0 2px 8px rgba(242, 208, 107, 0.4);
+  }
+  
+  body.dark-mode ::-webkit-scrollbar-thumb:active {
+    background: linear-gradient(135deg, #d4af37, #f2d06b);
+  }
+`;
+
+// Inject styles into document head
+if (typeof document !== 'undefined') {
+  const styleElement = document.createElement('style');
+  styleElement.textContent = scrollbarStyles;
+  document.head.appendChild(styleElement);
+}
+
 // Component to handle Ctrl+0 hotkey
 function AdminHotkeyHandler() {
   const navigate = useNavigate();

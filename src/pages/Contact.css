@@ -120,6 +120,10 @@ body.dark-mode .contact-form-section {
 }
 
 /* Contact Info */
+.contact-info {
+  transform: translateX(-6rem);
+}
+
 .contact-info h2 {
   font-size: 3rem;
   font-weight: 700;
