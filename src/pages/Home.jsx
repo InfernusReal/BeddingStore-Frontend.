@@ -107,7 +107,7 @@ export default function Home() {
 
   const handleSocialClick = (platform) => {
     const socialLinks = {
-      whatsapp: 'https://api.whatsapp.com/send/?phone=923005079539&text=Hello+there%21+I+am+interested+in+your+services'
+      whatsapp: 'https://api.whatsapp.com/send/?phone=923215088506&text=Hello'
     };
     window.open(socialLinks[platform], '_blank');
   };

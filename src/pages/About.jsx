@@ -14,7 +14,7 @@ export default function About() {
       instagram: 'https://www.instagram.com/thebeddingstorebybs/',
       facebook: 'https://www.facebook.com/profile.php?id=61577904336330',
       twitter: 'https://x.com/thebeddingstore',
-      whatsapp: 'https://api.whatsapp.com/send/?phone=923005079539&text=Hello+there%21+I+am+interested+in+your+services'
+      whatsapp: 'https://api.whatsapp.com/send/?phone=923215088506&text=Hello'
     };
     window.open(socialLinks[platform], '_blank');
   };
